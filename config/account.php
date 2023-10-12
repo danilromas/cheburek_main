@@ -8,6 +8,7 @@ if (!isset($_SESSION["login_sess"])) {
 $email = $_SESSION["login_email"];
 $id = $_SESSION["id"];
 $findresult = mysqli_query($induction, "SELECT * FROM customers WHERE `customer_id` = $id");
+$ordersResult = mysqli_query($induction, "SELECT * FROM AdminOrders ORDER BY order_date DESC");
 
 if ($id == 1){
   $_SESSION["admink"] = true;
@@ -83,6 +84,8 @@ if ($res = mysqli_fetch_array($findresult)) {
               <td><?php echo $name . ' '. $secondname ?></td>
             </tr>
 
+            
+
             <!-- <th>Email </th>
             <td><?php echo $email; ?></td>
             </tr> -->
@@ -101,6 +104,52 @@ if ($res = mysqli_fetch_array($findresult)) {
         </div>
       </div>
     </div>
+
+    <div class="orders_section">
+    <h2>Заказы: <a href="clear_orders.php" class="btn btn-danger" onClick="return confirm('Вы уверены что хотите удалить все заказы?')">Очистить</a></h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Номер заказа</th>
+        <th>Имя клиента</th>
+        <th>Телефон</th>
+        <th>Детали заказа</th>
+        <th>Общая цена</th>
+        <th>Дата и время заказа</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php 
+while($order = mysqli_fetch_array($ordersResult)) {
+  echo '<tr>';
+  echo '<td>' . $order['order_id'] . '</td>';
+  echo '<td>' . $order['customer_name'] . '</td>';
+  echo '<td>' . $order['phone_number'] . '</td>';
+  
+  // Раскодируйте строку JSON
+  $orderDetails = json_decode($order['order_details'], true);
+  
+  // Задайте пустую строку для деталей заказа
+  $detailText = '';
+  
+  // Пройдитесь по массиву деталей заказа
+  foreach($orderDetails as $detail) {
+    // Добавьте детали к строке, как вы их хотели
+    $detailText .= $detail['category'] . ' - ' . $detail['name'] . ' - ' . $detail['quantity'] . '- ' . $detail['price'] . '<br>';
+  }
+  
+  // Теперь добавьте детали заказа в вывод
+  echo '<td>' . $detailText . '</td>';
+
+  echo '<td>' . $order['total_price'] . ' Руб.</td>';
+  echo '<td>' . date("Y-m-d H:i", strtotime($order['order_date'])) . '</td>';
+  echo '</tr>';
+} 
+?>
+    </tbody>
+  </table>
+</div>
+    
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

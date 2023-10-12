@@ -1,21 +1,32 @@
 <?php
-// process_order.php
-//... ваш обычный код для обработки заказа
+require_once 'databases.php';
+session_start();
 
-// После обработки заказа
-
-// Содержимое письма
-$to = "romashkan.d.i.21@gmail.com"; // Замените на ваш адрес
-$subject = "Новый заказ";
-$message = "Вы получили новый заказ. Пожалуйста, проверьте свой административный раздел для получения дополнительной информации."; 
-
-// Не забудьте убедиться, что ваш сервер поддерживает отправку почты!
-if(mail($to, $subject, $message)) {
-    echo "Order has been placed successfully and email sent!";
-} else {
-    echo "Order placed but failed to send email.";
+if (!isset($_POST['products'])) {
+    // there is an error; you might want to handle it
 }
 
-//... остальной код
+$data = $_POST['products'];
 
-?>
+// assuming the customer is logged in and we have the id
+$customerId = $_SESSION["id"]; 
+
+// create an order
+$sqlOrder = "INSERT INTO Orders (customer_id) VALUES ('$customerId')";
+if (mysqli_query($induction, $sqlOrder)) {
+    $orderId = mysqli_insert_id($induction);
+} else {
+    echo "Error: " . $sqlOrder . "<br>" . mysqli_error($induction);
+}
+
+foreach ($data as $product) {
+    $productId = 1; // you need to figure out how to get product id based on product category and name
+    $quantity = $product->quantity;
+    $subtotal = $product->quantity * $product->price;
+
+    // create an order item
+    $sqlOrderItem = "INSERT INTO OrderItems (order_id, item_id, quantity, subtotal) VALUES ('$orderId', '$productId', '$quantity', '$subtotal')";
+    if (!mysqli_query($induction, $sqlOrderItem)) {
+        echo "Error: " . $sqlOrderItem . "<br>" . mysqli_error($induction);
+    }
+}

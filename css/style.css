@@ -809,3 +809,29 @@ section{
 #editSubmit:hover {
     background-color: #45a049;
 }
+
+
+/* Extra styles for the select boxes */
+select.form-control{
+    /* Modify according to your color scheme */
+    color: #fff;
+    background-color: var(--color-credit);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.6rem;
+    /* Style the dropdown icon, common across browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    /* Use this to add a dropdown arrow */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAAXNSR0IArs4c6QAAAGpJREFUOE9jYBgFo2AUjIJRMAg1sKnwGmu77B8YXn8NA5B6MDAwWPoPM10Dw2sYmeVmZnH1xesYBkZGmEN3u9z9cb1tN6Cx8TUTFIb2QyaitMyDv2ldz8fLJQ6gfDEYDQxGA6KZmRliFhYGGAZmDHQAAuIH+kXpOdEAAAAASUVORK5CYII=);
+}
+
+/* Change the color of the dropdown icon */
+select.form-control::-ms-expand {
+    color: #fff;
+    background-color: var(--color-credit);
+}

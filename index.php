@@ -41,11 +41,9 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#home">Главная</a>
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
-            <a href="#products">Продукты</a>
             <a href="#review">отзывы</a>
             <a href="#contact">Контакты</a>
             <a href="#blogs">Соц. сети</a>
-            <a href="../config/form.php">Проверка</a>
         </nav>
 
         <div class="icons">
@@ -60,31 +58,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         </div>
 
         <div class="cart-items-container">
-            <div class="cart-item">
-                <span class="fas fa-times"></span>
-                <img src="images/cart-item-1.jpg" alt="">
-                <div class="content">
-                    <h3>cart item 02</h3>
-                    <div class="price">$15.99/-</div>
-                </div>
-            </div>
-            <div class="cart-item">
-                <span class="fas fa-times"></span>
-                <img src="images/cart-item-2.jpg" alt="">
-                <div class="content">
-                    <h3>cart item 02</h3>
-                    <div class="price">$15.99/-</div>
-                </div>
-            </div>
-            <div class="cart-item">
-                <span class="fas fa-times"></span>
-                <img src="images/cart-item-3.jpg" alt="">
-                <div class="content">
-                    <h3>cart item 02</h3>
-                    <div class="price">$15.99/-</div>
-                </div>
-            </div>
-            <a href="" class="btn">checkout now</a>
+            <a href="config/form.php" class="btn">Составить заказ</a>
         </div>
     </header>
 
@@ -147,7 +121,6 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                         <?= $row['price'] ?>₽
                     </div>
 
-                    <a href="" class="btn">В корзину</a>
                     <?php if ($_SESSION["admink"]) { ?>
                     <a href="#" class="btn edit-btn" data-item-id="<?= $row['item_id'] ?>">Изменить</a>
                     <a href="/config/delete.php?id=<?= $row['item_id'] ?>" class="btn">Удалить</a>
@@ -202,7 +175,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 
     <!-- products start-->
 
-    <section class="products" id="products">
+   <!-- <section class="products" id="products">
 
         <h1 class="heading">Наши <span>Продукты</span></h1>
 
@@ -272,7 +245,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             </div>
         </div>
 
-    </section>
+    </section> -->
 
     <!-- products end -->
 
@@ -365,7 +338,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <!-- contact end -->
 
     <!-- blogs start -->
-    <section class="blogs" id="blogs">
+   <!--  <section class="blogs" id="blogs">
         <h1 class="heading">НАШ <span>БЛОГ</span></h1>
 
         <div class="box-container">
@@ -403,8 +376,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 </div>
             </div>
         </div>
-    </section>
-    <!-- blogs end-->
+    </section> -->
+    <!-- blogs end--> 
 
 
     <!-- footer start-->
@@ -420,7 +393,6 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#home">Главная</a>
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
-            <a href="#products">Продукты</a>
             <a href="#review">отзывы</a>
             <a href="#contact">Контакты</a>
             <a href="#blogs">Соц. сети</a>
