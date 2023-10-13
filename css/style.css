@@ -241,6 +241,13 @@ section{
     
 }
 
+@media (max-width: 600px) {
+    .menu .menu-sorting-btns{
+        overflow-y: auto;
+        max-height: 200px;   
+    }
+  }
+
 @media(max-width:768px){
     .about .row img,
     .about .row .image {
@@ -419,9 +426,12 @@ section{
 
  .menu .menu-sorting-btns {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     gap: 1rem;
     padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .menu .menu-sorting-btns .sorting-btn {
@@ -435,6 +445,9 @@ section{
     cursor: pointer;
     transition: background 0.3s;
     text-shadow: 1px 2px 0px #000000;
+    margin-right: 1rem;  
+    margin-bottom: 1rem;  
+    
 }
 
 .menu .menu-sorting-btns .sorting-btn:hover {
@@ -834,4 +847,11 @@ select.form-control{
 select.form-control::-ms-expand {
     color: #fff;
     background-color: var(--color-credit);
+}
+
+
+#msg{
+    color:#61b752;
+    margin-top: 10px;
+    display: block;
 }

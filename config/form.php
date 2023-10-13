@@ -41,6 +41,11 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 </div>
 
 <div class="col-md-6 input-container">
+    <label for="customerAddress">Адрес:</label>
+    <input type="text" class="form-control" id="customerAddress">
+</div>
+
+<div class="col-md-6 input-container">
     <label for="phoneNumber">Номер телефона: </label>
     <input type="tel" class="form-control" id="phoneNumber">
 </div>
@@ -152,7 +157,9 @@ $(document).ready(function(){
     $('#placeOrder').click(function() {
     let customerName = $('#customerName').val();
     let phoneNumber = $('#phoneNumber').val();
+    let customerAddress = $('#customerAddress').val(); // добавлено здесь
     let products = [];
+
     $('#addedProducts .product-row').each(function() {
         let productCategory = $(this).children().eq(0).text();
         let productName = $(this).children().eq(1).text();
@@ -161,6 +168,7 @@ $(document).ready(function(){
         products.push({category: productCategory, name: productName, quantity: quantity, price: price});
 
     });
+    
     let orderDetails = JSON.stringify(products);
 
     $.ajax({
@@ -169,6 +177,7 @@ $(document).ready(function(){
         data: {
             customerName: customerName,
             phoneNumber: phoneNumber,
+            customerAddress: customerAddress, // добавлено здесь
             orderDetails: orderDetails,
             totalPrice: totalSum
         },

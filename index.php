@@ -34,7 +34,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <header class="header">
 
         <a href="" class="logo">
-            <img src="images/logo.png" alt="">
+            <img src="images/zagruzheno.png" alt="">
         </a>
 
         <nav class="navbar">
@@ -42,8 +42,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
             <a href="#review">отзывы</a>
-            <a href="#contact">Контакты</a>
-            <a href="#blogs">Соц. сети</a>
+            <a href="#contact">Находимся</a>
+            <a href="#contact">Соц. сети</a>
         </nav>
 
         <div class="icons">
@@ -313,27 +313,32 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         <h1 class="heading"><span>МЫ</span> НАХОДИМСЯ</h1>
 
         <div class="row">
+            
             <iframe class="map"
                 src="https://yandex.ru/map-widget/v1/?um=constructor%3Abaf7a71ef2837d50981722010bc65959c1d9e9eeba22331bb75bf37a5f8947a2&amp;source=constructor"
                 allowfullscreen="" loading="lazy"></iframe>
 
-            <form action="">
-                <h3>Оставить отзыв</h3>
+            <form name='submit-to-google-sheet'>
+                <h3>Забронировать зал</h3>
+                <span id='msg'></span>
                 <div class="inputBox">
                     <span class="fas fa-user"></span>
-                    <input type="text" placeholder="Имя">
+                    <input type="text" name='text' placeholder="Имя">
                 </div>
                 <div class="inputBox">
                     <span class="fas fa-envelope"></span>
-                    <input type="email" placeholder="Сообщение">
+                    <input type="email" name='email' placeholder="Сообщение">
                 </div>
                 <div class="inputBox">
                     <span class="fas fa-phone"></span>
-                    <input type="number" placeholder="телефон">
+                    <input type="number" name='number' placeholder="телефон">
                 </div>
                 <input type="submit" value="отправить" class="btn">
+                
             </form>
+           
         </div>
+        
     </section>
     <!-- contact end -->
 
@@ -394,8 +399,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
             <a href="#review">отзывы</a>
-            <a href="#contact">Контакты</a>
-            <a href="#blogs">Соц. сети</a>
+            <a href="#contact">Находимся</a>
+            <a href="#contact">Соц. сети</a>
             <a href="/config/account.php">Администрирование</a>
         </div>
         <div class="credit">Наши Контакты: <span>+7 (978) 250-47-35</span></div>
@@ -407,6 +412,24 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 
 
     <script src="js/script.js"></script>
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzzLL9ZT1wBRahWSYkrXfRLSrtB8_B2AgiVCilIZrX1hUMt4GUrj8Tom_L2vHGkyx7w6A/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Отправлено"
+        setTimeout(function(){
+            msg.innerHTML = ""
+        },50) 
+        form.reset()
+        })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 </body>
 
 </html>

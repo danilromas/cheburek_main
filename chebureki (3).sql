@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 12 2023 г., 21:46
+-- Время создания: Окт 13 2023 г., 20:18
 -- Версия сервера: 8.0.30
 -- Версия PHP: 7.3.33
 
@@ -31,6 +31,7 @@ CREATE TABLE `AdminOrders` (
   `order_id` int NOT NULL,
   `customer_name` varchar(255) NOT NULL,
   `phone_number` varchar(15) DEFAULT NULL,
+  `customer_address` text,
   `order_details` text NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
   `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -125,7 +126,8 @@ INSERT INTO `MenuItems` (`item_id`, `item_name`, `category_id`, `description`, `
 (1, 'Чебурек с мясом', 13, 'Что может быть прекрасней чебурека, обжигающе горячего, с хрустящей, обжаренной в кипящем масле корочкой, истекающего ароматным бульоном и наполненного пряной мясной начинкой.', '200.00', NULL),
 (2, 'Чебурек с сыром', 13, 'Что может быть прекрасней чебурека, обжигающе горячего, с хрустящей, обжаренной в кипящем масле корочкой, истекающего ароматным бульоном и наполненного пряной мясной начинкой.', '150.00', '../images/2_UNOu6wH.jpeg'),
 (9, 'Новый продукт', 13, 'Описание', '210.00', '../images/9_8GUrAMA.jpeg'),
-(10, 'Чебурек c бараниной', 13, 'Описание', '280.00', '../images/10_image.png');
+(10, 'Чебурек c бараниной', 13, 'Описание', '280.00', '../images/10_image.png'),
+(14, 'Оливье', 1, 'Описание', '175.00', '../images/14_zim.png');
 
 -- --------------------------------------------------------
 
@@ -251,7 +253,7 @@ ALTER TABLE `Customers`
 -- AUTO_INCREMENT для таблицы `MenuItems`
 --
 ALTER TABLE `MenuItems`
-  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `Orders`

@@ -116,6 +116,7 @@ if ($res = mysqli_fetch_array($findresult)) {
         <th>Детали заказа</th>
         <th>Общая цена</th>
         <th>Дата и время заказа</th>
+        <th>Адрес клиента</th>
       </tr>
     </thead>
     <tbody>
@@ -138,11 +139,10 @@ while($order = mysqli_fetch_array($ordersResult)) {
     $detailText .= $detail['category'] . ' - ' . $detail['name'] . ' - ' . $detail['quantity'] . '- ' . $detail['price'] . '<br>';
   }
   
-  // Теперь добавьте детали заказа в вывод
   echo '<td>' . $detailText . '</td>';
-
   echo '<td>' . $order['total_price'] . ' Руб.</td>';
   echo '<td>' . date("Y-m-d H:i", strtotime($order['order_date'])) . '</td>';
+  echo '<td>' . $order['customer_address'] . '</td>';  // Here is the address details
   echo '</tr>';
 } 
 ?>
