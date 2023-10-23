@@ -14,8 +14,6 @@ if ($id == 1){
   $_SESSION["admink"] = true;
 }
 
-$todo = false;
-
 
 if ($res = mysqli_fetch_array($findresult)) {
   $name = $res['first_name'];
@@ -30,6 +28,8 @@ if ($res = mysqli_fetch_array($findresult)) {
   <title> Мой аккаунт</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../styles/styles.css" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
   <link href="styles/styles.css" rel="stylesheet" />
 </head>
@@ -55,14 +55,7 @@ if ($res = mysqli_fetch_array($findresult)) {
                 <div class="successmsg">Пароль был изменен...</div>
               <?php } ?>
               <center>
-              <?php if ($todo) 
-                if ($image == NULL) {
-                  echo '<img src="/img/user.jpg" width="100" height="100" ">';
-                } else {
-                  echo '<img src="images/' . $image . '" style="height:80px;width:auto;border-radius:50%;">';
-                } ?>
-              
-                
+
                 <p> Добро пожаловать! <br> <b style="color:black"><?php echo $name . ' ' . $secondname; ?> 
                 <?php if ($_SESSION["admink"]) { ?>
                 <div >У вас есть права администратора и вы можете изменять меню на главной странице сайта.</div>
@@ -83,16 +76,6 @@ if ($res = mysqli_fetch_array($findresult)) {
               <th>Имя Фамилия </th>
               <td><?php echo $name . ' '. $secondname ?></td>
             </tr>
-
-            
-
-            <!-- <th>Email </th>
-            <td><?php echo $email; ?></td>
-            </tr> -->
-
-            <!-- <th>Заказы </th>
-            <td><a href="/vendor/order.php?id= <?=$id?>">Посмотреть заказы</a></td>
-            </tr> -->
 
           </table>
           <div class="row">
