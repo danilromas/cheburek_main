@@ -583,7 +583,6 @@ section{
     font-size: 1.6rem;
     line-height: 1.8;
     color: #ccc;
-    padding: 2rem 0;
     background: var(--color-credit);
  }
  .review .box-container .box i{
@@ -878,4 +877,4 @@ select.form-control::-ms-expand {
     color:#61b752;
     margin-top: 10px;
     display: block;
-}
+}   

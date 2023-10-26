@@ -68,16 +68,17 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         </div>
 
         <div class="cart-items-container">
-            <a class="btn">Показать содержимое:</a>
-            <div class="modal" id="cart-modal">
-                <div class="modal-content">
-                    <span class="close" id="close-cart-modal">&times;</span>
-                    <ul id="cart-items-list">
-
-                    </ul>
-                </div>
-            </div>
+    <a class="btn" id="show-cart-btn">Показать содержимое корзины</a>
+    <div class="modal" id="cart-modal">
+    <div class="modal-content">
+        <span class="close" id="close-cart-modal">&times;</span>
+        <div id="cart-items-list">
+            <!-- Значения списка товаров в корзине будут добавлены динамически -->
         </div>
+        <a href="../config/form.php" class="btn" id="goto-order-page-btn">Перейти к оформлению</a>
+    </div>
+</div>
+
     </header>
 
     <section class="home" id="home">
@@ -130,7 +131,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         <div class="box-container">
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="box" data-item-id="<?= $row['item_id'] ?>" data-category="<?= $row['category_id'] ?>">
-                    <img src="<?= $row['image_url'] ?>" alt="">
+                    <img style="height: 22rem; border-radius: 10px;" src="<?= $row['image_url'] ?>" alt="">
                     <h3>
                         <?= $row['item_name'] ?>
                     </h3>
@@ -212,7 +213,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                     В меню не только сухомятка в виде чебуреков и разного рода фастфуда, но и супчики, что очень
                     понравилось ребёнку! Однозначно порекомендую комплексные обеды (бизнес ланч)!</p>
             </div>
-            <div class="box">
+            <div class="box" >
                 <i class="fa-solid fa-quote-left"></i>
                 <p></p>
                 <img src="images/user3.jpg" class="user" alt="">
@@ -305,6 +306,17 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 href="http://rococo-chimera-8f02ff.netlify.app/">ZiM™</a></p>
         <p> &copy; 2023 - Все права защищены </p>
     </footer>
+    <style>
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background: #711520;
+            color: white;
+            text-decoration:none; 
+            font-size: 150%;
+        }
+    </style>
 
 
 

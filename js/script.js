@@ -306,18 +306,30 @@ $("#open-modal-button").click(function() {
 document.querySelector('.btn').addEventListener('click', function() {
     // Отправляем запрос на серверный скрипт для получения товаров в корзине
     fetch('../config/get_cart_items.php')
-        .then(response => response.json())
-        .then(data => {
-            const cartItemsList = document.querySelector('#cart-items-list');
-            cartItemsList.innerHTML = ''; // Очищаем список
+    .then(response => response.json())
+    .then(data => {
+        const cartItemsList = document.querySelector('#cart-items-list');
+        cartItemsList.innerHTML = '';  // Очищаем список
 
-            if (data.length > 0) {
-                data.forEach(item => {
-                    // Создаем элемент списка для каждого товара
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${item.item_name} - ${item.quantity}`;
-                    cartItemsList.appendChild(listItem);
-                });
+        if (data.length > 0) {
+            data.forEach(item => {
+                // Создаем HTML-элемент карточки для каждого товара
+                const itemCard = document.createElement('div');
+                itemCard.className = 'item-card';   // Используем класс для стилизации карточки
+                
+                // Внутри карточки сгенерируем HTML с изображением товара
+                const innerHtml = `
+                    <div class="item-image-container">
+                        <img class="item-image" src="${item.image_url}" alt="${item.item_name}">
+                    </div>
+                    <div class="item-info">
+                        <h2 class="item-title">${item.item_name}</h2>
+                        <p class="item-quantity">Количество: ${item.quantity}</p>
+                        <p class="item-price">Цена: ${item.price}</p>
+                    </div>`;
+                itemCard.innerHTML = innerHtml;
+                cartItemsList.appendChild(itemCard);
+            });
             } else {
                 // Если корзина пуста, отобразите сообщение
                 const emptyCartMessage = document.createElement('p');
