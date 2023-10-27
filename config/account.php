@@ -119,8 +119,10 @@ while($order = mysqli_fetch_array($ordersResult)) {
   // Пройдитесь по массиву деталей заказа
   foreach($orderDetails as $detail) {
     // Добавьте детали к строке, как вы их хотели
-    $detailText .= $detail['category'] . ' - ' . $detail['name'] . ' - ' . $detail['quantity'] . '- ' . $detail['price'] . '<br>';
+    $detailText .= $detail['item_name'] . ' - ' . $detail['name'] . ' - ' . $detail['quantity'] . '- ' . $detail['price'] . '<br>';
   }
+
+  
   
   echo '<td>' . $detailText . '</td>';
   echo '<td>' . $order['total_price'] . ' Руб.</td>';

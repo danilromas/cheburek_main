@@ -75,7 +75,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         <div id="cart-items-list">
             <!-- Значения списка товаров в корзине будут добавлены динамически -->
         </div>
-        <a href="../config/form.php" class="btn" id="goto-order-page-btn">Перейти к оформлению</a>
+        <a href="../config/cart_page.php" class="btn" id="goto-order-page-btn">Перейти к оформлению</a>
     </div>
 </div>
 
@@ -317,7 +317,6 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             font-size: 150%;
         }
     </style>
-
 
 
 

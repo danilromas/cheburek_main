@@ -28,6 +28,7 @@ window.onscroll = () => {
 
 
 
+
 const editButtons = document.querySelectorAll('.edit-btn');
 
 editButtons.forEach((button) => {
@@ -274,8 +275,6 @@ $(document).ready(function() {
 
 
 
-
-
 // Обработчик события для открытия модального окна
 $("#open-modal-button").click(function() {
     $.ajax({
@@ -303,7 +302,7 @@ $("#open-modal-button").click(function() {
 });
 
 // Открывает модальное окно корзины
-document.querySelector('.btn').addEventListener('click', function() {
+document.querySelector('#show-cart-btn').addEventListener('click', function() {
     // Отправляем запрос на серверный скрипт для получения товаров в корзине
     fetch('../config/get_cart_items.php')
     .then(response => response.json())
@@ -326,6 +325,7 @@ document.querySelector('.btn').addEventListener('click', function() {
                         <h2 class="item-title">${item.item_name}</h2>
                         <p class="item-quantity">Количество: ${item.quantity}</p>
                         <p class="item-price">Цена: ${item.price}</p>
+                        <br>
                     </div>`;
                 itemCard.innerHTML = innerHtml;
                 cartItemsList.appendChild(itemCard);
@@ -341,3 +341,6 @@ document.querySelector('.btn').addEventListener('click', function() {
     // Открываем модальное окно
     document.querySelector('#cart-modal').style.display = 'block';
 });
+
+
+

@@ -1,4 +1,5 @@
 <?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,7 @@
 </head>
 
 
+
 <?php
 require_once 'databases.php';
 session_start();
@@ -26,6 +28,9 @@ $result = mysqli_query($induction, $sql);
 $sqlcategories = "SELECT * FROM `Categories` WHERE 1=1"; // '1=1' is used to simplify the WHERE clause construction
 $resultcategories = mysqli_query($induction, $sqlcategories);
 ?>
+
+
+
 
 <div class="img-btn-container">
     <div class="images">
@@ -41,7 +46,16 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 </div>
 
 <div class="col-md-6 input-container">
-    <label for="customerAddress">Адрес:</label>
+    <label for="inCity">Вы находитесь в городе?</label>
+    <select class="form-control" id="inCity">
+        <option value="" selected disabled>Выберите...</option>
+        <option value="yes">Да</option>
+        <option value="no">Нет</option>
+    </select>
+</div>
+
+<div id="addressForm" class="col-md-6 input-container" style="display: none;">
+    <label for="customerAddress">Адрес доставки:</label>
     <input type="text" class="form-control" id="customerAddress">
 </div>
 
@@ -49,6 +63,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <label for="phoneNumber">Номер телефона: </label>
     <input type="tel" class="form-control" id="phoneNumber">
 </div>
+
+
 
 </div>
 <hr>
@@ -101,7 +117,33 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 var totalSum = 0;
+var deliveryIncluded = false;
+
 $(document).ready(function(){
+
+    $('#inCity').change(function(){
+
+        $("#addressForm").show();
+
+        if(deliveryIncluded) { // check if delivery fee was already included
+            if($(this).val() == 'yes'){
+                totalSum -= 500; // subtract the previously added fee
+            } else {
+                totalSum -= 200;
+            }
+        }
+
+        if($(this).val() == 'yes'){
+            totalSum += 200;
+        } else {
+            totalSum += 500;
+        }
+
+        deliveryIncluded = true; // mark that delivery fee was included
+
+        $('#totalSum').text(totalSum);
+    });
+
     $('#productCategory').change(function(){
         var categoryId = $(this).val();
         $.ajax({
@@ -157,7 +199,7 @@ $(document).ready(function(){
     $('#placeOrder').click(function() {
     let customerName = $('#customerName').val();
     let phoneNumber = $('#phoneNumber').val();
-    let customerAddress = $('#customerAddress').val(); // добавлено здесь
+    let customerAddress = $('#customerAddress').val(); 
     let products = [];
 
     $('#addedProducts .product-row').each(function() {
@@ -166,7 +208,6 @@ $(document).ready(function(){
         let quantity = $(this).children().eq(2).text();
         let price = $(this).children().eq(3).text();
         products.push({category: productCategory, name: productName, quantity: quantity, price: price});
-
     });
     
     let orderDetails = JSON.stringify(products);
@@ -177,18 +218,21 @@ $(document).ready(function(){
         data: {
             customerName: customerName,
             phoneNumber: phoneNumber,
-            customerAddress: customerAddress, // добавлено здесь
+            customerAddress: customerAddress, 
             orderDetails: orderDetails,
             totalPrice: totalSum
         },
         success: function (response) {
             alert("Order has been placed successfully!");
+            
+            // Очистить корзину после успешного создания заказа
+            $('#addedProducts').empty();
+            totalSum = 0;
+            $('#totalSum').text(totalSum);
         },
     });
 });
 });
-
-
 </script>
 </body>
 </html>
