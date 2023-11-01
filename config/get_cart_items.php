@@ -3,7 +3,7 @@
 require_once 'databases.php';
 session_start();
 // Получение идентификатора сессии пользователя
-$user_session_id = session_id();
+$user_session_id = $_SESSION['user_id'];
 
 
 // Запрос к базе данных для получения товаров в корзине

@@ -4,7 +4,7 @@ session_start();
 require_once 'databases.php';
 
 // Запрос к базе данных для получения количества товаров в корзине (замените на свой SQL-запрос)
-$user_session_id = session_id(); // Получаем идентификатор сессии пользователя
+$user_session_id = $_SESSION['user_id']; // Получаем идентификатор сессии пользователя
 
 $sql = "SELECT COUNT(*) AS cart_count FROM cart WHERE user_session_id = '$user_session_id'";
 $result = mysqli_query($induction, $sql);

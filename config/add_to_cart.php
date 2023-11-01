@@ -8,7 +8,7 @@ function addtocart($induction, $item_id, $quantity) {
     // Здесь вы должны выполнить SQL-запрос для добавления товара в корзину
     // Например, выполните SQL-запрос для добавления записи в таблицу cart
 
-    $user_session_id = session_id(); // Получаем идентификатор сессии пользователя
+    $user_session_id = $_SESSION['user_id']; // Получаем идентификатор сессии пользователя
 
     $sql = "INSERT INTO cart (user_session_id, product_id, quantity) VALUES (?, ?, ?)";
     $stmt = mysqli_prepare($induction, $sql);

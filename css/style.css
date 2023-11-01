@@ -12,7 +12,8 @@
 
 
 *{
-    font-family: 'Miss Lavanda', cursive;
+    
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -448,12 +449,14 @@ section{
 }
 
  .menu .box-container .box h3{
+    font-family: 'Miss Lavanda', cursive;
     color: #fff;
     font-size: 2rem;
     padding:1rem 0;
  }
 
  .menu .box-container .box .price{
+    font-family: 'Miss Lavanda', cursive;
     color: #fff;
     font-size: 2.5rem;
     padding:.5rem 0;
@@ -572,43 +575,47 @@ section{
     gap:1.5rem;
  }
 
- .review .box-container .box{
+ .review .box-container .box1{
     border: var(--border);
     text-align: center;
     padding:3rem 2rem;
     border-radius: 10px;
  }
 
- .review .box-container .box{
+ .review .box-container .box1{
     font-size: 1.6rem;
     line-height: 1.8;
     color: #ccc;
     background: var(--color-credit);
  }
- .review .box-container .box i{
+ .review .box-container .box1 i{
     color: #e19a00;
     font-size: 7.5rem;
  }
 
- .review .box-container .box .user{
+ .review .box-container .box1 .user{
     height: 7rem;
     width: 7rem;
     border-radius: 50%;
     object-fit: cover;
  }
 
- .review .box-container .box h3{
+ .reviews-section {
+    display: block; /* Оставить раздел "Отзывы" видимым */
+}
+
+ .review .box-container .box1 h3{
     padding: 1rem 0;
     font-size: 2rem;
     color: #fff;
  }
 
- .review .box-container .box .stars i{
+ .review .box-container .box1 .stars i{
     font-size: 1.5rem;
     color: yellow;
  }
  
- .review .box-container .box p {
+ .review .box-container .box1 p {
     text-transform: none;
 }
 

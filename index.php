@@ -1,8 +1,8 @@
 <?php
 $user_session_id = uniqid();
-session_id($user_session_id); // Устанавливаем user session ID
-session_start(); // Запускаем сессию
-setcookie("user_session_id", $user_session_id, time() + 3600, "/");
+// session_id($user_session_id);
+session_start();
+$_SESSION['user_id'] = $user_session_id;
 
 ?>
 <!DOCTYPE html>
@@ -22,12 +22,12 @@ setcookie("user_session_id", $user_session_id, time() + 3600, "/");
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miss+Lavanda&display=swap">
 </head>
 
 
 <?php
 require_once 'config/databases.php';
-session_start();
 $sql = "SELECT * FROM `MenuItems` WHERE 1=1";
 $result = mysqli_query($induction, $sql);
 
@@ -71,7 +71,6 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <a class="btn" id="show-cart-btn">Показать содержимое корзины</a>
     <div class="modal" id="cart-modal">
     <div class="modal-content">
-        <span class="close" id="close-cart-modal">&times;</span>
         <div id="cart-items-list">
             <!-- Значения списка товаров в корзине будут добавлены динамически -->
         </div>
@@ -96,7 +95,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
 
         <div class="row">
             <div class="image">
-                <img src="images/cheb1.jpg" alt="">
+                <img src="images/cheb2.jpg" alt="">
             </div>
 
             <div class="content">
@@ -104,16 +103,15 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 <p>Наше кафе находится в самом сердце нашего города. Недалеко от нас прекрасная набережная, парки, море.
                     Поэтому после прекрасной прогулки ждем вас к нам на завтрак-обед-ужин.</p>
                 <p>Очень вкусно, по домашнему, и быстро.</p>
-                <p>-Чебуреки от 135р</p>
-                <p>-Завтрак 199р</p>
-                <p>-Комплексный обед 299р</p>
+                <p>-Чебуреки от 155р</p>
+                <p>-Завтрак 249р</p>
+                <p>-Комплексный обед 380р</p>
                 <p>-Разнообразное меню</p>
                 <p>Так же действуют различные акции, скорее приходи мы тебя ждем!</p>
                 <a href="#menu" class="btn">Наше меню</a>
             </div>
         </div>
     </section>
-
 
     <section class="menu" id="menu">
         <h1 class="heading"><span>Меню</span></h1>
@@ -136,7 +134,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                         <?= $row['item_name'] ?>
                     </h3>
                     <div class="price">
-                        <?= $row['price'] ?>₽
+                        <?= $row['price']?>₽
                         <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
                     </div>
 
@@ -192,12 +190,12 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     </div>
 
 
-    <section class="review" id="review">
+    <section class="review reviews-section" id="review">
 
         <h1 class="heading">О<span>тзывы</span></h1>
 
         <div class="box-container">
-            <div class="box">
+            <div class="box1">
                 <i class="fa-solid fa-quote-left"></i>
                 <p></p>
                 <img src="images/user2.jpg" class="user" alt="">
@@ -213,7 +211,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                     В меню не только сухомятка в виде чебуреков и разного рода фастфуда, но и супчики, что очень
                     понравилось ребёнку! Однозначно порекомендую комплексные обеды (бизнес ланч)!</p>
             </div>
-            <div class="box" >
+            <div class="box1" >
                 <i class="fa-solid fa-quote-left"></i>
                 <p></p>
                 <img src="images/user3.jpg" class="user" alt="">
@@ -229,7 +227,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                     Сытный, вкусный... Мммм... Спасибо, что не оставляете голодными. Ну, и цены очень радуют. Для меня
                     обед - борщ и салат - обходятся в 179 руб.. Ну, сказка?</p>
             </div>
-            <div class="box">
+            <div class="box1">
                 <i class="fa-solid fa-quote-left"></i>
                 <p></p>
                 <img src="images/user1.jpg" class="user" alt="">
@@ -344,6 +342,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 })
                 .catch(error => console.error('Error!', error.message))
             })
+
+            
             </script>
 </body>
 

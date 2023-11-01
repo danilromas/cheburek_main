@@ -2,7 +2,7 @@
 require_once 'databases.php';
 session_start();
 
-$session_id = session_id(); 
+$session_id = $_SESSION['user_id']; 
 
 $sql = "SELECT * FROM cart JOIN MenuItems ON cart.product_id = MenuItems.item_id WHERE user_session_id = ?";
 $stmt = mysqli_prepare($induction, $sql);
