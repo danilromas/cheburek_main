@@ -173,20 +173,13 @@ if(count($items_in_cart) > 0): ?>
 endif; 
 ?>
 
-<form method="POST" action="">
-    <h2>Информация о заказчике</h2>
-    <input type="text" name="customer_name" placeholder="Ваше имя" required>
-    <input type="text" name="phone_number" placeholder="Ваш телефон" required>
-    <input type="text" name="customer_address" placeholder="Ваш адрес" required>
-    
-    <label>Вы проживаете в городе?</label>
-    <select name="city_dwell" id="city_dwell" required>
-        <option value="" selected disabled>Выберите...</option>
-        <option value="yes">Да</option>
-        <option value="no">Нет</option>
-    </select>
-
-    <input type="submit" name="submit_order" value="Оформить заказ">
+<form id="kassa-form" action="/kassa/pay.php" method="POST">
+    <input type="text" name="order" required placeholder="Номер заказа">
+    <input type="number" step="0.01" min="1.0" name="sum" required placeholder="Сумма заказа">
+    <input type="tel" name="phone" required placeholder="Ваш телефон">
+    <input type="email" name="email" required placeholder="Ваш E-mail">
+    <input type="submit" name="submit" value="Оплатить">
+</form>
 </form>
 </body>
 </html>
