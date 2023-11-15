@@ -318,13 +318,9 @@ document.querySelector('#show-cart-btn').addEventListener('click', function() {
                 
                 // Внутри карточки сгенерируем HTML с изображением товара
                 const innerHtml = `
-                    <div class="item-image-container">
-                        <img class="item-image" src="${item.image_url}" alt="${item.item_name}">
-                    </div>
                     <div class="item-info">
                         <h2 class="item-title">${item.item_name}</h2>
                         <p class="item-quantity">Количество: ${item.quantity}</p>
-                        <p class="item-price">Цена: ${item.price}</p>
                         <br>
                     </div>`;
                 itemCard.innerHTML = innerHtml;

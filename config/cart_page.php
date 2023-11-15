@@ -36,12 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $stmt = mysqli_prepare($induction, $sql);
     mysqli_stmt_bind_param($stmt, "ssssd", $customer_name, $phone_number, $customer_address, $order_details, $total_price);
     mysqli_stmt_execute($stmt);
+    $_SESSION['total_price'] = $total_price;
 }
 
+$city_dwell = 'unknown';
 if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
-    $customer_name = $_POST['customer_name'];
-    $phone_number = $_POST['phone_number'];
-    $customer_address = $_POST['customer_address'];
     $city_dwell = $_POST['city_dwell'];
 
     if ($city_dwell == 'yes') {
@@ -52,6 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
     else{
         $total_price += 0;
     }
+
+    $customer_name = $_POST['customer_name'];
+    $phone_number = $_POST['phone_number'];
+    $customer_address = $_POST['customer_address'];
     
     // подробная информация о заказе
     $order_details = json_encode($items_in_cart);
@@ -67,6 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
         echo "Ошибка: " . mysqli_error($induction);
         exit();
     }
+
+    // Переход на страницу oplata.php
+    $_SESSION['total_price'] = $total_price;
+    header('Location: oplata.php');
+    exit;
 }
 
   if($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['action']) && ($_POST['action'] == 'increment' || $_POST['action'] == 'decrement'))) {
@@ -173,13 +181,20 @@ if(count($items_in_cart) > 0): ?>
 endif; 
 ?>
 
-<form id="kassa-form" action="/kassa/pay.php" method="POST">
-    <input type="text" name="order" required placeholder="Номер заказа">
-    <input type="number" step="0.01" min="1.0" name="sum" required placeholder="Сумма заказа">
-    <input type="tel" name="phone" required placeholder="Ваш телефон">
-    <input type="email" name="email" required placeholder="Ваш E-mail">
-    <input type="submit" name="submit" value="Оплатить">
-</form>
+<form method="POST" action="">
+    <h2>Информация о заказчике</h2>
+    <input type="text" name="customer_name" placeholder="Ваше имя" required>
+    <input type="text" name="phone_number" placeholder="Ваш телефон" required>
+    <input type="text" name="customer_address" placeholder="Ваш адрес" required>
+    
+    <label>Вы проживаете в городе?</label>
+    <select name="city_dwell" id="city_dwell" required>
+        <option value="" selected disabled>Выберите...</option>
+        <option value="yes">Да</option>
+        <option value="no">Нет</option>
+    </select>
+
+    <input type="submit" href name="submit_order" value="Оформить заказ">
 </form>
 </body>
 </html>

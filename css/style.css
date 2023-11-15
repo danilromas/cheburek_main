@@ -78,6 +78,10 @@ section{
     text-shadow: 1px 2px 0px #000000;
 }
 
+.buy-btn{
+    font-family: 'Miss Lavanda', cursive;
+}
+
 .btn:hover{
     letter-spacing: .2rem;
 }
@@ -389,30 +393,33 @@ section{
 }
 
 .about .row .content h3{
-    font-size: 3rem; /* Decreased font size */
+    font-family: 'Miss Lavanda', cursive;
+    font-size: 3rem; 
     color: #fff;
-    text-align: center; 
+    text-align: center;
+    text-transform: lowercase; /* Added to enforce lowercase */
 }
 
 .about .row .content p{
-    font-size: 2rem; /* Decreased font size */
+    font-family: 'Miss Lavanda', cursive;
+    font-size: 2rem; 
     color: #ccc;
     padding: 1rem 0;
-    line-height: 1.6; /* Adjusted line-height */
-    text-align: center; 
+    line-height: 1.6;
+    text-align: center;
+    text-transform: lowercase; /* Added to enforce lowercase */
 }
-
 .about .row .content a{
     display: flex;
     justify-content: center;
 }
 
-
- .menu .box-container{
+.menu .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
     gap:1.5rem;
- }
+    overflow-x: visible;
+}
 
  .menu .box-container .box{
     padding: 5rem;
@@ -472,11 +479,6 @@ section{
     background: var(--main-color);
  }
 
- .menu .box-container{
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth; /* плавная прокрутка */
-}
 
 
 .menu .box-container::-webkit-scrollbar {
