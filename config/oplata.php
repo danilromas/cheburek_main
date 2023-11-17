@@ -17,7 +17,7 @@ $total_price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
 ?>
 
 <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
-    <input type="hidden" name="receiver" value="410015782984202"/>
+    <input type="hidden" name="receiver" value="4100118447684098"/>
     <input type="hidden" name="label" value="$order_id"/>
     <input type="hidden" name="quickpay-form" value="button"/>
     <input type="hidden" name="sum" value="<?php echo $total_price; ?>" data-type="number"/>
