@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 23 2023 г., 21:32
+-- Время создания: Ноя 29 2023 г., 16:56
 -- Версия сервера: 8.0.30
 -- Версия PHP: 7.2.34
 
@@ -37,13 +37,6 @@ CREATE TABLE `AdminOrders` (
   `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Дамп данных таблицы `AdminOrders`
---
-
-INSERT INTO `AdminOrders` (`order_id`, `customer_name`, `phone_number`, `customer_address`, `order_details`, `total_price`, `order_date`) VALUES
-(1, 'Тест', '+79785580159', 'Переулок Ладыгина 6', '[{\"category\":\"\\\"Чебуреки\\\" -\",\"name\":\"Чебурек c бараниной-\",\"quantity\":\"1шт\",\"price\":\"280.00руб\"},{\"category\":\"\\\"Чебуреки\\\" -\",\"name\":\"Чебурек с мясом-\",\"quantity\":\"1шт\",\"price\":\"200.00руб\"},{\"category\":\"\\\"Чебуреки\\\" -\",\"name\":\"Чебурек c бараниной-\",\"quantity\":\"20шт\",\"price\":\"280.00руб\"}]', '6080.00', '2023-10-14 17:26:14');
-
 -- --------------------------------------------------------
 
 --
@@ -63,45 +56,97 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `quantity`, `user_session_id`) VALUES
-(87, NULL, 20, 1, '6536af5ae9248'),
-(88, NULL, 17, 1, '6536af5ae9248'),
-(89, NULL, 16, 1, '6536af5ae9248'),
-(90, NULL, 2, 1, '6536af5ae9248'),
-(91, NULL, 2, 1, '6536af5ae9248'),
-(92, NULL, 2, 1, '6536af5ae9248'),
-(93, NULL, 2, 1, '6536af5ae9248'),
-(94, NULL, 2, 1, '6536af5ae9248'),
-(95, NULL, 14, 1, '6536b02d40450'),
-(96, NULL, 14, 1, '6536b02d40450'),
-(97, NULL, 14, 1, '6536b1dc09362'),
-(98, NULL, 14, 1, '6536b3a6e497d'),
-(99, NULL, 16, 1, '6536b3a6e497d'),
-(100, NULL, 10, 1, '6536b3eb46a9d'),
-(101, NULL, 14, 1, '6536b3eb46a9d'),
-(102, NULL, 14, 1, '6536b43ff1659'),
-(103, NULL, 10, 1, '6536b4e023a24'),
-(104, NULL, 10, 1, '6536b500b8809'),
-(105, NULL, 16, 1, '6536b583cf0e4'),
-(106, NULL, 10, 1, '6536b5b25a7bd'),
-(107, NULL, 10, 1, '6536b67aa80b8'),
-(108, NULL, 10, 1, '6536b67aa80b8'),
-(109, NULL, 14, 1, '6536b7445844d'),
-(110, NULL, 10, 1, '6536b7445844d'),
-(111, NULL, 10, 1, '6536b7bcddc56'),
-(112, NULL, 16, 1, '6536b7bcddc56'),
-(113, NULL, 2, 1, '6536b7bcddc56'),
-(114, NULL, 10, 1, '6536b8e42eea2'),
-(115, NULL, 10, 1, '6536b8fce8e3b'),
-(116, NULL, 10, 1, '6536b95f9c46a'),
-(117, NULL, 16, 1, '6536b9b9e8b90'),
-(118, NULL, 10, 1, '6536ba2ce521f'),
-(119, NULL, 16, 1, '6536ba8993b0d'),
-(120, NULL, 10, 1, '6536bbe58fb7d'),
-(121, NULL, 18, 1, '6536bbe58fb7d'),
-(122, NULL, 16, 1, '6536bbe58fb7d'),
-(123, NULL, 20, 1, '6536bbe58fb7d'),
-(124, NULL, 21, 1, '6536bbe58fb7d'),
-(125, NULL, 21, 1, '6536bbe58fb7d');
+(146, NULL, 2, 1, '653e83e9b6d81'),
+(147, NULL, 2, 1, '653e83e9b6d81'),
+(148, NULL, 2, 1, '653e8437b5b2e'),
+(149, NULL, 2, 1, '653e862a36c9b'),
+(150, NULL, 10, 1, '653e862a36c9b'),
+(151, NULL, 2, 1, '653e891d69d3c'),
+(152, NULL, 2, 1, '653e891d69d3c'),
+(153, NULL, 2, 1, '653e8934cbc14'),
+(154, NULL, 2, 1, '653e8934cbc14'),
+(155, NULL, 10, 1, '653e896b3d873'),
+(156, NULL, 10, 1, '653e8a49901ab'),
+(157, NULL, 2, 1, '653e8a89c6af6'),
+(158, NULL, 2, 1, '653e8a8ee1eb8'),
+(159, NULL, 10, 1, '653e8a9cac281'),
+(160, NULL, 18, 1, '653f58076a3c8'),
+(161, NULL, 19, 1, '653f58076a3c8'),
+(162, NULL, 45, 1, '653fbe2728a4b'),
+(163, NULL, 43, 1, '653fbe2728a4b'),
+(164, NULL, 1, 1, '6540ad4c82b0b'),
+(165, NULL, 2, 1, '6540ad4c82b0b'),
+(166, NULL, 10, 1, '65427b1feefd9'),
+(167, NULL, 2, 1, '65427b4938b68'),
+(168, NULL, 1, 1, '65427c5d3e012'),
+(169, NULL, 10, 1, '65427caa6869f'),
+(170, NULL, 1, 1, '65498e5716e99'),
+(171, NULL, 10, 1, '654bb9e84ed90'),
+(172, NULL, 10, 1, '654bbbfc99347'),
+(173, NULL, 10, 1, '654bbc6063380'),
+(174, NULL, 10, 1, '654bbc6a1265e'),
+(175, NULL, 10, 1, '654bbd2e47da8'),
+(176, NULL, 58, 1, '6555146d5491f'),
+(177, NULL, 58, 1, '6555146d5491f'),
+(178, NULL, 14, 1, '655515517ac8d'),
+(179, NULL, 14, 1, '655515517ac8d'),
+(180, NULL, 14, 1, '655515517ac8d'),
+(181, NULL, 2, 1, '6555158027ce5'),
+(182, NULL, 52, 1, '6555149956c7a'),
+(183, NULL, 47, 1, '65551641a2dfc'),
+(184, NULL, 2, 1, '65551644ac251'),
+(185, NULL, 60, 1, '655516f732fbb'),
+(186, NULL, 10, 1, '65551817be1d2'),
+(187, NULL, 1, 1, '655598e62f4b3'),
+(188, NULL, 2, 1, '655598e62f4b3'),
+(189, NULL, 2, 1, '6555990c706ea'),
+(190, NULL, 1, 1, '6555f757ca233'),
+(191, NULL, 1, 1, '6555f8487c0ba'),
+(192, NULL, 16, 1, '655603aa6dbe1'),
+(193, NULL, 16, 1, '65562b551cc35'),
+(194, NULL, 14, 1, '65562b551cc35'),
+(195, NULL, 2, 1, '65570aee9b908'),
+(196, NULL, 1, 1, '65570aee9b908'),
+(197, NULL, 58, 1, '65570bbedce09'),
+(198, NULL, 59, 1, '65570bbedce09'),
+(199, NULL, 59, 1, '6557105fc5c10'),
+(200, NULL, 14, 1, '6557105fc5c10'),
+(201, NULL, 2, 1, '65574e154fca4'),
+(202, NULL, 2, 1, '65578ed15e2cf'),
+(203, NULL, 1, 1, '65578f5a4037b'),
+(204, NULL, 1, 1, '65578fa62b4cc'),
+(205, NULL, 55, 1, '6557900e04183'),
+(206, NULL, 2, 1, '6557902b047b0'),
+(207, NULL, 2, 1, '6557908b8e8d3'),
+(208, NULL, 2, 1, '6557908b8e8d3'),
+(209, NULL, 16, 1, '655790dfdae54'),
+(210, NULL, 1, 1, '655791e8e1006'),
+(211, NULL, 2, 1, '655791e8e1006'),
+(212, NULL, 1, 1, '655791e8e1006'),
+(213, NULL, 1, 1, '655791e8e1006'),
+(214, NULL, 1, 1, '655791e8e1006'),
+(215, NULL, 1, 1, '655791e8e1006'),
+(216, NULL, 1, 1, '655791e8e1006'),
+(217, NULL, 2, 1, '6557bb387b155'),
+(218, NULL, 2, 1, '6557c29b85000'),
+(219, NULL, 2, 1, '65586fe0781bc'),
+(220, NULL, 16, 1, '6558b929442c7'),
+(221, NULL, 19, 1, '6558eb5a22e0d'),
+(222, NULL, 2, 1, '6558f4dd20ce9'),
+(223, NULL, 2, 1, '655a52fb5383f'),
+(224, NULL, 14, 1, '655b3ba77481f'),
+(225, NULL, 18, 1, '655b4a93cd551'),
+(226, NULL, 1, 1, '655ca12860441'),
+(227, NULL, 1, 1, '655cc47e57ba5'),
+(228, NULL, 2, 1, '655cccfd1238b'),
+(229, NULL, 10, 1, '655cccfd1238b'),
+(230, NULL, 16, 1, '655cd3ba1c5dc'),
+(231, NULL, 2, 1, '655cd4c00da34'),
+(232, NULL, 2, 1, NULL),
+(233, NULL, 2, 1, NULL),
+(234, NULL, 2, 1, '11'),
+(235, NULL, 10, 1, '11'),
+(236, NULL, 1, 1, '11');
 
 -- --------------------------------------------------------
 
@@ -121,7 +166,6 @@ CREATE TABLE `Categories` (
 INSERT INTO `Categories` (`category_id`, `category_name`) VALUES
 (1, 'Салаты'),
 (2, 'Напитки'),
-(3, 'Основные блюда'),
 (4, 'Первые блюда'),
 (5, 'Вторые блюда'),
 (6, 'Закуски'),
@@ -153,7 +197,12 @@ CREATE TABLE `Customers` (
 --
 
 INSERT INTO `Customers` (`customer_id`, `first_name`, `last_name`, `email`, `phone_number`, `address`, `password`) VALUES
-(1, 'Безупречная', 'Чебуречная', 'administrator', NULL, NULL, 'admin');
+(1, 'Безупречная Чебуречная', '', 'Infiniti_ooo@Inbox.Ru', NULL, NULL, 'administrator'),
+(2, 'Mako', 'Sin', 'mdanuishis@mail.ru', '+789997', 'Jopas Street', '123412341234'),
+(4, 'asdfasdfasd', 'asdfasdfasdf', 'Ma@ma', 'asdfasdfasdf', 'asdfasdfasdfasdf', 'asdfasdf'),
+(10, 'Мако Синчик', 'Фамилия', 'bronepoezduav@gmail.com', '+79785892033', 'Адрес', '123412341234'),
+(11, 'Иван Сергеевич', 'Фамилия', 'mdanushis@mail.ru', '+79785892033', 'Адрес пуст', '123123123'),
+(12, 'Мако Мако', 'Фамилия', 'Mako@mail.ru', '+79780000000', 'улица Пушкина, дом Колотушкина', 'makomako');
 
 -- --------------------------------------------------------
 
@@ -191,7 +240,7 @@ INSERT INTO `MenuItems` (`item_id`, `item_name`, `category_id`, `description`, `
 (25, 'Салат Винегрет', 1, 'Описание', '130.00', '../images/25_Салат Винегрет.jpg'),
 (26, 'Баварские колбаски', 6, 'Описание', '290.00', '../images/26_Баварские колбаски.jpg'),
 (27, 'Картофель Фри', 6, 'Описание', '175.00', '../images/27_Картофель Фри.jpg'),
-(28, 'Наггетсы 6шт', 6, 'Описание', '195.00', '../images/28_Наггетсы куриные.jpg'),
+(28, 'Наггетсы 6шt', 6, 'Описание', '195.00', '../images/28_Наггетсы куриные.jpg'),
 (29, 'Чесночные гренки', 6, 'Описание', '145.00', '../images/29_Гренки чесночные.jpg'),
 (30, 'Куриные крылья 3шт', 6, 'Описание', '245.00', '../images/30_Крылья куриные.jpg'),
 (31, 'Сырные палочки 4шт', 6, 'Описание', '185.00', '../images/31_Сырные палочки.jpg'),
@@ -235,8 +284,26 @@ INSERT INTO `MenuItems` (`item_id`, `item_name`, `category_id`, `description`, `
 CREATE TABLE `OrderItems` (
   `order_id` int NOT NULL,
   `product_id` int NOT NULL,
-  `quantity` int DEFAULT NULL
+  `quantity` int DEFAULT NULL,
+  `unique_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `OrderItems`
+--
+
+INSERT INTO `OrderItems` (`order_id`, `product_id`, `quantity`, `unique_id`) VALUES
+(17, 2, 1, 1),
+(17, 2, 1, 2),
+(17, 2, 1, 3),
+(17, 1, 1, 4),
+(17, 1, 1, 5),
+(17, 1, 1, 6),
+(17, 37, 1, 7),
+(21, 27, 1, 88),
+(21, 16, 1, 94),
+(23, 10, 1, 95),
+(23, 2, 1, 96);
 
 -- --------------------------------------------------------
 
@@ -247,8 +314,18 @@ CREATE TABLE `OrderItems` (
 CREATE TABLE `Orders` (
   `order_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
-  `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `orderstatus` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `Orders`
+--
+
+INSERT INTO `Orders` (`order_id`, `user_id`, `order_date`, `orderstatus`) VALUES
+(17, 12, '2023-11-23 16:36:54', 'finished'),
+(21, 12, '2023-11-24 16:12:12', 'active'),
+(23, 1, '2023-11-25 11:39:20', 'Оплата наличкой');
 
 --
 -- Индексы сохранённых таблиц
@@ -289,13 +366,16 @@ ALTER TABLE `MenuItems`
 -- Индексы таблицы `OrderItems`
 --
 ALTER TABLE `OrderItems`
-  ADD PRIMARY KEY (`order_id`,`product_id`);
+  ADD PRIMARY KEY (`unique_id`),
+  ADD KEY `item_id` (`product_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Индексы таблицы `Orders`
 --
 ALTER TABLE `Orders`
-  ADD PRIMARY KEY (`order_id`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -305,13 +385,13 @@ ALTER TABLE `Orders`
 -- AUTO_INCREMENT для таблицы `AdminOrders`
 --
 ALTER TABLE `AdminOrders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT для таблицы `Categories`
@@ -323,19 +403,25 @@ ALTER TABLE `Categories`
 -- AUTO_INCREMENT для таблицы `Customers`
 --
 ALTER TABLE `Customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `MenuItems`
 --
 ALTER TABLE `MenuItems`
-  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT для таблицы `OrderItems`
+--
+ALTER TABLE `OrderItems`
+  MODIFY `unique_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT для таблицы `Orders`
 --
 ALTER TABLE `Orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -351,7 +437,14 @@ ALTER TABLE `MenuItems`
 -- Ограничения внешнего ключа таблицы `OrderItems`
 --
 ALTER TABLE `OrderItems`
-  ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`);
+  ADD CONSTRAINT `orderitems_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `MenuItems` (`item_id`),
+  ADD CONSTRAINT `orderitems_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `Orders`
+--
+ALTER TABLE `Orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Customers` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

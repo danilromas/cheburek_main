@@ -8,7 +8,7 @@ if (isset($_POST['sublogin'])) {
 
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM `Customers` WHERE (first_name = '$login' OR email = '$login')";
+    $query = "SELECT * FROM `Customers` WHERE (email = '$login')";
     $res = mysqli_query($induction, $query);
 
     $numRows = mysqli_num_rows($res);
@@ -19,8 +19,9 @@ if (isset($_POST['sublogin'])) {
         if ($password == $row['password']) {
             $_SESSION["login_sess"] = "1";
             $_SESSION["login_email"] = $row['email'];
-            $_SESSION["id"] = $row['customer_id'];
+            $_SESSION["customer_id"] = $row['customer_id'];
             $_SESSION["admink"] = false;
+
             header("location:account.php");
         } else {
             header("location:login.php?loginerror=" . $login);

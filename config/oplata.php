@@ -15,6 +15,12 @@
 session_start(); // В начале файла, если сессия ещё не начата
 $total_price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
 ?>
+<form method="POST" action="handle_cash_payment.php">
+    <input type="hidden" name="order_id" value="<?php echo $order_id; ?>"/>
+    <input type="hidden" name="total_price" value="<?php echo $total_price; ?>"/>
+    <label><input type="radio" name="paymentType" value="cash"/>Наличными</label><br>
+    <input type="submit" value="Оплатить наличными"/>
+</form>
 
 <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
     <input type="hidden" name="receiver" value="4100118447684098"/>

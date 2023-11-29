@@ -2,7 +2,7 @@
 <?php require_once 'databases.php'; ?>
 
 <head><br>
-  <title> Администрирование </title>
+  <title> Личный кабинет </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.png" type="image/x-icon">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -27,10 +27,10 @@
                 $loginerror = $_GET['loginerror'];
               }
               if (!empty($loginerror)) {
-                echo '<p class="errmsg">Администратор не подтвержден. Повторите попытку.</p>';
+                echo '<p class="errmsg">Аккаунт не найден. Повторите попытку или зарегистрируйтесь.</p>';
               } ?>
 
-              <label class="label_txt"> Логин </label>
+              <label class="label_txt"> Электронная почта </label>
               <input type="text" name="login_var" value="<?php if (!empty($loginerror)) {
                                                             echo  $loginerror;
                                                           } ?>" class="form-control" required="">
@@ -43,7 +43,7 @@
           </form>
 
           <br>
-          <!-- <p>Нет аккаунта? <a href="signup.php">Создать</a> </p> -->
+          <p>Нет аккаунта? <a href="signup.php">Создать</a> </p>
         </div>
         <div class="col-sm-4">
         </div>

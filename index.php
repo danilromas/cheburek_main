@@ -1,8 +1,9 @@
 <?php
-$user_session_id = uniqid();
+#$user_session_id = uniqid();
 // session_id($user_session_id);
+
+#$_SESSION['user_id'] = $user_session_id;
 session_start();
-$_SESSION['user_id'] = $user_session_id;
 
 ?>
 <!DOCTYPE html>
@@ -52,12 +53,14 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#review">отзывы</a>
             <a href="#contact">Находимся</a>
             <a href="#contact">Соц. сети</a>
+            <a href="/config/account.php">Личный кабинет</a>
         </nav>
+
 
         <div class="icons">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-shopping-cart" id="cart-btn">
-                <span id="cart-count">0</span>
+                <span id="cart-count"></span>
             </div>
             <div class="fas fa-bars" id="menu-btn"></div>
         </div>
@@ -68,15 +71,18 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         </div>
 
         <div class="cart-items-container">
-    <a class="btn" id="show-cart-btn">Показать содержимое корзины</a>
-    <div class="modal" id="cart-modal">
-    <div class="modal-content">
-        <div id="cart-items-list">
-            <!-- Значения списка товаров в корзине будут добавлены динамически -->
+            <a class="btn" id="show-cart-btn">Показать корзину</a>
+            <!-- Модальное окно корзины -->
+            <div class="modal" id="cart-modal">
+                <div class="modal-content">
+                    <span class="close" id="close-cart-btn">&times;</span>
+                    <h2>Корзина</h2>
+                    <div id="cart-items-list"></div>
+                </div>
+            </div>
+
+            <a href="../config/cart_page.php" class="btn" id="goto-order-page-btn">Оформить заказ</a>
         </div>
-        <a href="../config/cart_page.php" class="btn" id="goto-order-page-btn">Перейти к оформлению</a>
-    </div>
-</div>
 
     </header>
 
@@ -134,7 +140,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                         <?= $row['item_name'] ?>
                     </h3>
                     <div class="price">
-                        <?= $row['price']?>₽
+                        <?= $row['price'] ?>₽
                         <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
                     </div>
 
@@ -161,7 +167,8 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <!-- HTML модального окна -->
     <div id="openModal" class="modalDialog">
         <div class="modal-content">
-            <a href="#close" title="Закрыть" class="close">X</a>
+            <a href="#" title="Закрыть" class="close" id="closeModal">&times;</a>
+
             <h2>Редактировать товар</h2>
             <form id="editForm" enctype="multipart/form-data">
                 <input type="hidden" id="itemId" name="itemId">
@@ -211,7 +218,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                     В меню не только сухомятка в виде чебуреков и разного рода фастфуда, но и супчики, что очень
                     понравилось ребёнку! Однозначно порекомендую комплексные обеды (бизнес ланч)!</p>
             </div>
-            <div class="box1" >
+            <div class="box1">
                 <i class="fa-solid fa-quote-left"></i>
                 <p></p>
                 <img src="images/user3.jpg" class="user" alt="">
@@ -296,8 +303,13 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#contact">Соц. сети</a>
             <a href="/config/account.php">Администрирование</a>
         </div>
-        <div class="credit">Наши Контакты: <span>+7 (978) 250-47-35</span></div>
+        <div class="credit">Наши Контакты: <span>+7 (978) 250-47-35 <br> ИНН: 9200009575
+                ОГРН: 1229200001623
+                Контакт: +79782504719
+                infiniti_ooo@inbox.ru</span> </div>
     </section>
+
+
     <!-- footer end-->
     <footer class="site-footer">
         <p>Разработано компанией <a style="color:white; text-decoration: underline;"
@@ -311,7 +323,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             padding: 20px;
             background: #711520;
             color: white;
-            text-decoration:none; 
+            text-decoration: none;
             font-size: 150%;
         }
     </style>
@@ -325,30 +337,31 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         $(document).ready(function () {
             // Ваш код, использующий jQuery
         });
-        
+
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzzLL9ZT1wBRahWSYkrXfRLSrtB8_B2AgiVCilIZrX1hUMt4GUrj8Tom_L2vHGkyx7w6A/exec'
         const form = document.forms['submit-to-google-sheet']
         const msg = document.getElementById("msg")
-        
+
         form.addEventListener('submit', e => {
             e.preventDefault()
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => {
-                msg.innerHTML = "Отправлено"
-                setTimeout(function () {
+                .then(response => {
+                    msg.innerHTML = "Отправлено"
+                    setTimeout(function () {
                         msg.innerHTML = ""
                     }, 50)
                     form.reset()
                 })
                 .catch(error => console.error('Error!', error.message))
-            })
+        })
 
-            
-            </script>
+
+    </script>
 </body>
 
-            <style>
+<style>
 
-                
-            </style>
+
+</style>
+
 </html>

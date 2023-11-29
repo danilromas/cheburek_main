@@ -148,13 +148,14 @@ editSubmitButton.addEventListener('click', () => {
 });
 
 // Код для закрытия модального окна при нажатии на "X"
-const closeModalButton = document.querySelector('.close');
+const closeModalButton = document.getElementById('closeModal');
 
-closeModalButton.addEventListener('click', () => {
+// Добавляем обработчик событий для кнопки закрытия модального окна
+closeModalButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Предотвращаем стандартное действие ссылки
     const modal = document.getElementById('openModal');
     modal.style.display = 'none';
 });
-
 
 
 
@@ -240,18 +241,18 @@ function updateCartCount() {
     $.ajax({
         url: '../config/get_cart_count.php', // Путь к серверному скрипту, который вернет количество товаров в корзине
         type: 'GET',
-        success: function(data) {
+        success: function (data) {
             // Обновляем элемент с количеством
             $('#cart-count').text(data);
         },
-        error: function(error) {
+        error: function (error) {
             console.log(error);
         }
     });
 }
 
-$(document).ready(function() {
-    $(".buy-btn").click(function(e) {
+$(document).ready(function () {
+    $(".buy-btn").click(function (e) {
         e.preventDefault();
         var item_id = $(this).data("item-id");
         var quantity = 1; // Вы можете задать желаемое количество товара
@@ -259,7 +260,7 @@ $(document).ready(function() {
             type: "POST",
             url: "../config/add_to_cart.php",
             data: { item_id: item_id, quantity: quantity },
-            success: function(response) {
+            success: function (response) {
                 // Обработка успешного добавления товара
                 updateCartCount();
                 alert(response); // Вывод сообщения пользователю
@@ -272,42 +273,25 @@ $(document).ready(function() {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const cartItemsList = document.querySelector('#cart-items-list');
 
+    // Функция для удаления товара из корзины
+    function removeFromCart(uniqueId) {
+        fetch(`../config/remove_from_cart.php?uniqueId=${uniqueId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Выводим в консоль сообщение для отладки
+                console.log(data.message);
+                console.log(uniqueId);
 
+                // После успешного удаления, обновляем корзину
+                fetchCartItems();
+            });
+    }
 
-// Обработчик события для открытия модального окна
-$("#open-modal-button").click(function() {
-    $.ajax({
-        type: "GET",
-        url: "../config/get_cart_items.php", // Путь к серверному скрипту для получения товаров в корзине
-        dataType: "json",
-        success: function(data) {
-            if (data.length > 0) {
-                // Очищаем содержимое модального окна
-                $("#modal-content").empty();
-
-                // Создаем список товаров и добавляем его в модальное окно
-                var itemList = $("<ul>");
-                $.each(data, function(index, item) {
-                    var listItem = $("<li>").text(item.item_name + " - " + item.quantity);
-                    itemList.append(listItem);
-                });
-                $("#modal-content").append(itemList);
-            } else {
-                // Если корзина пуста, отобразите сообщение
-                $("#modal-content").text("Корзина пуста.");
-            }
-        }
-    });
-});
-
-// Открывает модальное окно корзины
-document.querySelector('#show-cart-btn').addEventListener('click', function() {
-    // Отправляем запрос на серверный скрипт для получения товаров в корзине
-    fetch('../config/get_cart_items.php')
-    .then(response => response.json())
-    .then(data => {
-        const cartItemsList = document.querySelector('#cart-items-list');
+    // Функция для отображения корзины
+    function renderCart(data) {
         cartItemsList.innerHTML = '';  // Очищаем список
 
         if (data.length > 0) {
@@ -315,28 +299,75 @@ document.querySelector('#show-cart-btn').addEventListener('click', function() {
                 // Создаем HTML-элемент карточки для каждого товара
                 const itemCard = document.createElement('div');
                 itemCard.className = 'item-card';   // Используем класс для стилизации карточки
-                
+
                 // Внутри карточки сгенерируем HTML с изображением товара
                 const innerHtml = `
                     <div class="item-info">
+                        <img class="item-image" src="${item.image_url}" alt="${item.item_name}">
                         <h2 class="item-title">${item.item_name}</h2>
-                        <p class="item-quantity">Количество: ${item.quantity}</p>
-                        <br>
+                        <h2 class="item-price">${item.price}₽</h2>
                     </div>`;
+
                 itemCard.innerHTML = innerHtml;
+
+                // Создаем кнопку "Удалить" и добавляем атрибут data-product-id
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-item-btn';
+                removeButton.textContent = 'Убрать';
+
+                // Устанавливаем data-product-id равным идентификатору товара
+                removeButton.setAttribute('data-product-id', item.item_id);
+
+                removeButton.addEventListener('click', function () {
+                    // Извлекаем id из data-product-id атрибута кнопки
+                    const itemId = removeButton.getAttribute('data-product-id');
+                    removeFromCart(item.unique_id);
+                });
+
+                itemCard.appendChild(removeButton);
                 cartItemsList.appendChild(itemCard);
             });
-            } else {
-                // Если корзина пуста, отобразите сообщение
-                const emptyCartMessage = document.createElement('p');
-                emptyCartMessage.textContent = 'Корзина пуста';
-                cartItemsList.appendChild(emptyCartMessage);
-            }
-        });
+        } else {
+            // Если корзина пуста, отобразите сообщение
+            const emptyCartMessage = document.createElement('p');
+            emptyCartMessage.textContent = 'Корзина пуста';
+            cartItemsList.appendChild(emptyCartMessage);
+        }
+    }
 
-    // Открываем модальное окно
-    document.querySelector('#cart-modal').style.display = 'block';
+    // Функция для получения данных о товарах в корзине
+    function fetchCartItems() {
+        fetch('../config/get_cart_items.php')
+            .then(response => response.json())
+            .then(data => {
+                // Отображаем полученные данные
+                renderCart(data);
+                console.log(data);
+            });
+    }
+
+    // Обработчик события для открытия модального окна корзины
+    document.querySelector('#show-cart-btn').addEventListener('click', function () {
+        // Получаем и отображаем товары в корзине
+        fetchCartItems();
+        // Открываем модальное окно
+        document.querySelector('#cart-modal').style.display = 'block';
+    });
+
+    // Обработчик события для закрытия модального окна корзины
+    document.querySelector('#close-cart-btn').addEventListener('click', function () {
+        // Закрываем модальное окно
+        document.querySelector('#cart-modal').style.display = 'none';
+    });
+
+    // Используем делегирование событий для кнопки "удалить"
+    // cartItemsList.addEventListener('click', function (event) {
+    //     if (event.target.classList.contains('remove-item-btn')) {
+    //         // Получаем имя товара из элемента карточки
+    //         const itemName = event.target.closest('.item-card').querySelector('.item-title').textContent;
+    //         // Извлекаем id из data-product-id атрибута кнопки
+    //         const itemId = event.target.getAttribute('data-product-id');
+    //         removeFromCart(itemName, itemId);
+    //     }
+    // });
 });
-
-
-
