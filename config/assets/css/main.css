@@ -1,0 +1,81 @@
+/* Main Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Styles */
+.post {
+    margin-bottom: 40px;
+}
+
+.post header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.title h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: #777;
+}
+
+.meta time {
+    color: #555;
+}
+
+.meta a.author {
+    display: flex;
+    align-items: center;
+}
+
+.meta a.author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.share {
+    display: flex;
+    justify-content: center;
+}
+
+.share a {
+    font-size: 1.5em;
+    color: #fff;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.share a:hover {
+    color: #ff4500; /* Change to your preferred hover color */
+}
+

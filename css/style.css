@@ -988,3 +988,12 @@ button.remove-item-btn{
     vertical-align: bottom;
 
 }
+
+
+
+/*Cart*/
+
+/* Стили для модального окна корзины */
+.cart-items-container .modal .h1 {
+    color:green;
+}

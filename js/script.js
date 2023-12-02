@@ -289,9 +289,65 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetchCartItems();
             });
     }
+    // Создание стиля
+    const styles = `
+
+    .item-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .item-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .item-image {
+        max-width: 100px;
+        height: auto;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .item-title {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .item-price {
+        margin: 0;
+        font-size: 16px;
+        color: #888;
+    }
+
+    .remove-item-btn {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .remove-item-btn:hover {
+        background-color: #c82333;
+    }
+`;
+
+// Создаем элемент style и добавляем стили в него
+const styleElement = document.createElement('style');
+styleElement.textContent = styles;
+
+
 
     // Функция для отображения корзины
     function renderCart(data) {
+        document.head.appendChild(styleElement);
+        
         cartItemsList.innerHTML = '';  // Очищаем список
 
         if (data.length > 0) {
@@ -299,14 +355,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Создаем HTML-элемент карточки для каждого товара
                 const itemCard = document.createElement('div');
                 itemCard.className = 'item-card';   // Используем класс для стилизации карточки
+                // Добавляем созданный элемент style в тег head документа
 
                 // Внутри карточки сгенерируем HTML с изображением товара
                 const innerHtml = `
                     <div class="item-info">
+                    
                         <img class="item-image" src="${item.image_url}" alt="${item.item_name}">
                         <h2 class="item-title">${item.item_name}</h2>
                         <h2 class="item-price">${item.price}₽</h2>
                     </div>`;
+
+                    
 
                 itemCard.innerHTML = innerHtml;
 
@@ -371,3 +431,5 @@ document.addEventListener('DOMContentLoaded', function () {
     //     }
     // });
 });
+
+

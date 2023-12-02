@@ -76,7 +76,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <div class="modal" id="cart-modal">
                 <div class="modal-content">
                     <span class="close" id="close-cart-btn">&times;</span>
-                    <h2>Корзина</h2>
+                    <h1 align="center">Корзина</h1>
                     <div id="cart-items-list"></div>
                 </div>
             </div>
@@ -285,6 +285,71 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         </div>
 
     </section>
+    <!-- blogs start -->
+    <section class="blogs" id="blogs">
+    <h1 class="heading">НАШ <span>БЛОГ</span></h1>
+    <div class="box-container">
+    <?php
+$query1 = "SELECT * FROM tbl_ckeditor";
+$result1 = mysqli_query($induction, $query1);
+    if ($result1) {
+        // Цикл для вывода каждой записи
+        while ($row = mysqli_fetch_assoc($result1)) {
+            echo '<div class="box">';
+            echo '<div class="image">';
+            echo '<img src="' . $row['image_url'] . '" alt="">';
+            echo '</div>';
+            echo '<div class="content">';
+            echo '<a href="#" class="title">' . $row['itemName'] . '</a>';
+            echo '<span>by admin/' . $row['created_at'] . '</span>';
+            echo '<p>' . $row['kratko'] . '</p>';
+            echo '<a href="../config/news.php?id=' .$row['id'] . '" class="btn read-more">Читать далее</a>';
+            echo '<button class="btn delete-btn">Удалить</button>';
+            echo '</div>';
+            echo '</div>';
+        }
+    
+        // Освобождение результата запроса
+        mysqli_free_result($result1);
+    } else {
+        // Если запрос не удался, выведите ошибку
+        echo 'Ошибка запроса: ' . mysqli_error($induction);
+    }
+    
+    // Закрытие соединения с базой данных
+    mysqli_close($induction);
+    ?>
+    
+        <div class="box">
+            <div class="image">
+                <img src="images/blog-1.jpg" alt="">
+            </div>
+            <div class="content">
+                <a href="#" class="title"> sochnie chebureks</a>
+                <span>by admin/21 sep 2023</span>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, ea.</p>
+                <a href="../config/news.php?id=<?=$id?>" class="btn read-more">Читать далее</a>
+                <button class="btn delete-btn">Удалить</button>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img src="images/blog-1.jpg" alt="">
+            </div>
+            <div class="content">
+                <a href="#" class="title"> sochnie chebureks</a>
+                <span>by admin/21 sep 2023</span>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, ea.</p>
+                <a href="https://vk.link/cheburek_sevas" class="btn read-more">Читать далее</a>
+                <button class="btn delete-btn">Удалить</button>
+
+            </div>
+        </div>
+    </div>
+    <a href = 'config/redactor.php' class="btn">Редактировать</a>
+</section>
+
+     <!-- blogs end-->
     <!-- footer start-->
     <section class="footer">
         <div class="share">
