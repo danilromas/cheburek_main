@@ -49,7 +49,6 @@ $blog = mysqli_fetch_assoc($blog); ?>
 								</header>
 								<br>
 								<p><?= $blog['content'] ?></p>
-								<img src="../images/user2.jpg" class="user" alt="">
 					</div>
 
 				<!-- Footer -->

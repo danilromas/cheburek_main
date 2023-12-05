@@ -292,22 +292,31 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <?php
 $query1 = "SELECT * FROM tbl_ckeditor";
 $result1 = mysqli_query($induction, $query1);
-    if ($result1) {
-        // Цикл для вывода каждой записи
-        while ($row = mysqli_fetch_assoc($result1)) {
-            echo '<div class="box">';
-            echo '<div class="image">';
-            echo '<img src="' . $row['image_url'] . '" alt="">';
-            echo '</div>';
-            echo '<div class="content">';
-            echo '<a href="#" class="title">' . $row['itemName'] . '</a>';
-            echo '<span>by admin/' . $row['created_at'] . '</span>';
-            echo '<p>' . $row['kratko'] . '</p>';
-            echo '<a href="../config/news.php?id=' .$row['id'] . '" class="btn read-more">Читать далее</a>';
-            echo '<button class="btn delete-btn">Удалить</button>';
-            echo '</div>';
-            echo '</div>';
+
+if ($result1) {
+    // Loop to display each record
+    while ($row = mysqli_fetch_assoc($result1)) {
+        echo '<div class="box">';
+        echo '<div class="image">';
+        echo '<img src="' . $row['image_url'] . '" alt="">';
+        echo '</div>';
+        echo '<div class="content">';
+        echo '<a href="#" class="title">' . $row['itemName'] . '</a>';
+        echo '<span>by admin/' . $row['created_at'] . '</span>';
+        echo '<p>' . $row['kratko'] . '</p>';
+        echo '<a href="../config/news.php?id=' . $row['id'] . '" class="btn read-more">Читать далее</a>';
+        
+        if ($_SESSION["admink"]) {
+            // Form for deletion
+            echo '<form method="POST" action="../config/delete_blog.php">';
+            echo '<input type="hidden" name="blog_id" value="' . $row['id'] . '">';
+            echo '<button type="submit" name="delete_blog" class="btn delete-btn">Удалить</button>';
+            echo '</form>';
         }
+
+        echo '</div>';
+        echo '</div>';
+    }
     
         // Освобождение результата запроса
         mysqli_free_result($result1);
@@ -319,34 +328,13 @@ $result1 = mysqli_query($induction, $query1);
     // Закрытие соединения с базой данных
     mysqli_close($induction);
     ?>
-    
-        <div class="box">
-            <div class="image">
-                <img src="images/blog-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <a href="#" class="title"> sochnie chebureks</a>
-                <span>by admin/21 sep 2023</span>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, ea.</p>
-                <a href="../config/news.php?id=<?=$id?>" class="btn read-more">Читать далее</a>
-                <button class="btn delete-btn">Удалить</button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="image">
-                <img src="images/blog-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <a href="#" class="title"> sochnie chebureks</a>
-                <span>by admin/21 sep 2023</span>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, ea.</p>
-                <a href="https://vk.link/cheburek_sevas" class="btn read-more">Читать далее</a>
-                <button class="btn delete-btn">Удалить</button>
-
             </div>
         </div>
     </div>
-    <a href = 'config/redactor.php' class="btn">Редактировать</a>
+    <?php if ($_SESSION["admink"]) { ?>
+                        <a href = 'config/redactor.php' class="btn">Создать новый блог</a>
+                    <?php } ?>
+    
 </section>
 
      <!-- blogs end-->
