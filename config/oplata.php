@@ -19,7 +19,7 @@ $total_price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
     <input type="hidden" name="order_id" value="<?php echo $order_id; ?>"/>
     <input type="hidden" name="total_price" value="<?php echo $total_price; ?>"/>
     <label><input type="radio" name="paymentType" value="cash"/>Наличными</label><br>
-    <input type="submit" value="Оплатить наличными"/>
+    <input type="submit" value="Оплатить наличными" onclick="sendSMS()"/>
 </form>
 
 <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
@@ -29,7 +29,17 @@ $total_price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
     <input type="hidden" name="sum" value="<?php echo $total_price; ?>" data-type="number"/>
     <label><input type="radio" name="paymentType" value="PC"/>ЮMoney</label><br>
     <label><input type="radio" name="paymentType" value="AC"/>Банковской картой</label><br>
-    <input type="submit" value="Перевести"/>
+    <input type="submit" value="Оплата картой" onclick="sendSMS()"/>
 </form>
+
+<script>
+ function sendSMS() {
+    // Здесь мы используем AJAX для отправки данных на сервер без перезагрузки страницы
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'phone.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('phone=79785192565&message=Новый_заказ!');
+ }
+</script>
 </body>
 </html>
