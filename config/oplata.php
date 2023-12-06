@@ -38,7 +38,7 @@ $total_price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'phone.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('phone=79785192565&message=Новый_заказ!');
+    xhr.send('phone=79782504719&message=Новый_заказ!');
  }
 </script>
 </body>
