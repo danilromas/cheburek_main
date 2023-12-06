@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 29 2023 г., 16:56
+-- Время создания: Дек 06 2023 г., 20:11
 -- Версия сервера: 8.0.30
--- Версия PHP: 7.2.34
+-- Версия PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -202,7 +202,8 @@ INSERT INTO `Customers` (`customer_id`, `first_name`, `last_name`, `email`, `pho
 (4, 'asdfasdfasd', 'asdfasdfasdf', 'Ma@ma', 'asdfasdfasdf', 'asdfasdfasdfasdf', 'asdfasdf'),
 (10, 'Мако Синчик', 'Фамилия', 'bronepoezduav@gmail.com', '+79785892033', 'Адрес', '123412341234'),
 (11, 'Иван Сергеевич', 'Фамилия', 'mdanushis@mail.ru', '+79785892033', 'Адрес пуст', '123123123'),
-(12, 'Мако Мако', 'Фамилия', 'Mako@mail.ru', '+79780000000', 'улица Пушкина, дом Колотушкина', 'makomako');
+(12, 'Мако Мако', 'Фамилия', 'Mako@mail.ru', '+79780000000', 'улица Пушкина, дом Колотушкина', 'makomako'),
+(14, 'Данил Ромашкан', 'Фамилия', 'romashkan.d.i.21@gmail.com', '+79788956924', 'Севастополь', 'XiaomiRedmi8');
 
 -- --------------------------------------------------------
 
@@ -303,7 +304,17 @@ INSERT INTO `OrderItems` (`order_id`, `product_id`, `quantity`, `unique_id`) VAL
 (21, 27, 1, 88),
 (21, 16, 1, 94),
 (23, 10, 1, 95),
-(23, 2, 1, 96);
+(23, 2, 1, 96),
+(24, 19, 1, 97),
+(25, 10, 1, 103),
+(25, 25, 1, 104),
+(25, 23, 1, 105),
+(25, 22, 1, 106),
+(26, 2, 1, 114),
+(26, 10, 1, 115),
+(26, 1, 1, 116),
+(26, 28, 1, 117),
+(25, 2, 1, 118);
 
 -- --------------------------------------------------------
 
@@ -325,7 +336,25 @@ CREATE TABLE `Orders` (
 INSERT INTO `Orders` (`order_id`, `user_id`, `order_date`, `orderstatus`) VALUES
 (17, 12, '2023-11-23 16:36:54', 'finished'),
 (21, 12, '2023-11-24 16:12:12', 'active'),
-(23, 1, '2023-11-25 11:39:20', 'Оплата наличкой');
+(23, 1, '2023-11-25 11:39:20', 'Оплата наличкой'),
+(24, 14, '2023-11-29 14:29:45', 'Оплата наличкой'),
+(25, 1, '2023-11-29 14:34:55', 'Оплата наличкой'),
+(26, 14, '2023-11-29 17:45:10', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tbl_ckeditor`
+--
+
+CREATE TABLE `tbl_ckeditor` (
+  `id` int NOT NULL,
+  `content` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `image_url` text,
+  `kratko` text NOT NULL,
+  `glava` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Индексы сохранённых таблиц
@@ -378,6 +407,12 @@ ALTER TABLE `Orders`
   ADD KEY `customer_id` (`user_id`);
 
 --
+-- Индексы таблицы `tbl_ckeditor`
+--
+ALTER TABLE `tbl_ckeditor`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -403,7 +438,7 @@ ALTER TABLE `Categories`
 -- AUTO_INCREMENT для таблицы `Customers`
 --
 ALTER TABLE `Customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `MenuItems`
@@ -415,13 +450,19 @@ ALTER TABLE `MenuItems`
 -- AUTO_INCREMENT для таблицы `OrderItems`
 --
 ALTER TABLE `OrderItems`
-  MODIFY `unique_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `unique_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT для таблицы `Orders`
 --
 ALTER TABLE `Orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT для таблицы `tbl_ckeditor`
+--
+ALTER TABLE `tbl_ckeditor`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
