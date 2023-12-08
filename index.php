@@ -100,8 +100,9 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         <h1 class="heading">О <span>Нас</span></h1>
 
         <div class="row">
-            <div class="image">
-                <img src="images/cheb2.jpg" alt="">
+            <div class="images">
+            <video width="400" height="700" controls="controls" poster="images/cheb2.jpg">
+                <source src="images/video.mp4" type='video/ogg; codecs="theora, vorbis"'>
             </div>
 
             <div class="content">
@@ -120,47 +121,72 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     </section>
 
     <section class="menu" id="menu">
-        <h1 class="heading"><span>Меню</span></h1>
+    <h1 class="heading"><span>Меню</span></h1>
 
-        <div class="menu-sorting-btns box-container">
-            <button class="sorting-btn" data-category="all">Все</button>
+    <div class="menu-sorting-btns box-container">
+        <button class="sorting-btn" data-category="all">Все</button>
 
-            <?php while ($rowcategories = mysqli_fetch_assoc($resultcategories)): ?>
-                <button class="sorting-btn" data-category="<?= $rowcategories['category_id'] ?>">
-                    <?= $rowcategories['category_name'] ?>
-                </button>
-            <?php endwhile; ?>
-        </div>
+        <?php while ($rowcategories = mysqli_fetch_assoc($resultcategories)): ?>
+            <button class="sorting-btn" data-category="<?= $rowcategories['category_id'] ?>">
+                <?= $rowcategories['category_name'] ?>
+            </button>
+        <?php endwhile; ?>
+    </div>
 
-        <div class="box-container">
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <div class="box" data-item-id="<?= $row['item_id'] ?>" data-category="<?= $row['category_id'] ?>">
-                    <img style="height: 22rem; border-radius: 10px;" src="<?= $row['image_url'] ?>" alt="">
-                    <h3>
-                        <?= $row['item_name'] ?>
-                    </h3>
-                    <div class="price">
-                        <?= $row['price'] ?>₽
-                        <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
-                    </div>
+    <div class="box-container">
+        <?php
+        // Reset the pointer of the result set
+        mysqli_data_seek($result, 0);
 
-                    <?php if ($_SESSION["admink"]) { ?>
-                        <a href="#" class="btn edit-btn" data-item-id="<?= $row['item_id'] ?>">Изменить</a>
-                        <a href="/config/delete.php?id=<?= $row['item_id'] ?>" class="btn">Удалить</a>
-                    <?php } ?>
+        while ($row = mysqli_fetch_assoc($result)): ?>
+            <div class="box" data-item-id="<?= $row['item_id'] ?>" data-category="<?= $row['category_id'] ?>">
+                <img style="height: 22rem; border-radius: 10px;" src="<?= $row['image_url'] ?>" alt="">
+                <h3>
+                    <?= $row['item_name'] ?>
+                </h3>
+                <div class="price">
+                    <?= $row['price'] ?>₽
+                    <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
                 </div>
-            <?php endwhile; ?>
-            <?php if ($_SESSION["admink"]) { ?>
-                <div class="box">
-                    <img src="images/menu-1.jpg" alt="">
-                    <h3>Новый товар</h3>
-                    <div class="price"></div>
-                    <a href="/config/addempty.php" class="btn">Добавить</a>
-                </div>
-            <?php } ?>
 
-        </div>
-    </section>
+                <?php if ($_SESSION["admink"]) { ?>
+                    <a href="#" class="btn edit-btn" data-item-id="<?= $row['item_id'] ?>">Изменить</a>
+                    <a href="/config/delete.php?id=<?= $row['item_id'] ?>" class="btn">Удалить</a>
+                <?php } ?>
+            </div>
+        <?php endwhile; ?>
+        <?php if ($_SESSION["admink"]) { ?>
+            <div class="box">
+                <img src="images/menu-1.jpg" alt="">
+                <h3>Новый товар</h3>
+                <div class="price"></div>
+                <a href="/config/addempty.php" class="btn">Добавить</a>
+            </div>
+        <?php } ?>
+
+    </div>
+</section>
+
+<script>
+    // JavaScript code to handle filtering by category
+    const sortingBtns = document.querySelectorAll('.sorting-btn');
+    const boxes = document.querySelectorAll('.box');
+
+    sortingBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category;
+
+            boxes.forEach(box => {
+                const boxCategory = box.dataset.category;
+                if (category === 'all' || category === boxCategory) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
 
     <!-- menu end-->
 

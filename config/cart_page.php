@@ -51,12 +51,15 @@ if ($user_stmt) {
 $city_dwell = 'unknown';
 if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
     $city_dwell = $_POST['city_dwell'];
-    if ($city_dwell == 'yes') {
+    if ($city_dwell == 'leninsky') {
         $total_price += 200;
-    } elseif ($city_dwell == 'no') {
-        $total_price += 500;
-    } else {
-        $total_price += 500;
+    } elseif ($city_dwell == 'nakhimovsky') {
+        $total_price += 250;
+    } elseif ($city_dwell == 'nakhimovsky'){
+        $total_price += 300;
+    }
+    else{
+        
     }
 }
 if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
@@ -141,11 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
         <input type="text" name="phone_number" placeholder="Ваш телефон" required value="<?= $phone_number ?? '' ?>">
         <input type="text" name="customer_address" placeholder="Ваш адрес" required
             value="<?= $customer_address ?? '' ?>">
-        <label>Вы проживаете в городе?</label>
-        <select name="city_dwell" id="city_dwell" required>
-            <option value="" selected disabled>Выберите...</option>
-            <option value="yes">Да</option>
-            <option value="no">Нет</option>
+        <label for="city_dwell">Выберите район:</label>
+            <select name="city_dwell" id="city_dwell">
+                <option value="" selected disabled>Выберите район...</option>
+                <option value="leninsky">Ленинский</option>
+                <option value="nakhimovsky">Нахимовский</option>
+                <option value="gagarinsky">Гагаринский</option>
         </select>
         <input type="submit" name="submit_order" value="Оформить заказ">
     </form>

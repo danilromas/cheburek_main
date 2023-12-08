@@ -88,6 +88,9 @@ $orders_result = mysqli_query($induction, $orders_query);
                     <?php echo $name; ?>
                   </b> </p>
               </center>
+              <center>
+                <a href="../index.php"><button class="btn btn-primary">Вернуться в меню</button></a>
+              </center>
             </div>
             <div class="col">
               <p><a href="logout.php"><span style="color:red;">Выйти</span> </a></p>
@@ -121,11 +124,28 @@ $orders_result = mysqli_query($induction, $orders_query);
             </tr>
           </table>
         </div>
-        <form method="POST" action="update_address.php">
-          <label for="new_address">Новый адрес доставки:</label>
-          <input type="text" id="new_address" name="new_address" required>
-          <input type="submit" value="Изменить адрес">
-        </form>
+        <button id="toggleFormButton" style="display: none;">Редактировать адрес</button>
+        <form id="addressForm" method="POST" action="update_address.php" style="display: none;">
+    <label for="street">Улица:</label>
+    <input type="text" id="street" name="street" required>
+
+    <label for="house_number">Номер дома:</label>
+    <input type="text" id="house_number" name="house_number" required>
+
+    <label for="apartment">Квартира:</label>
+    <input type="text" id="apartment" name="apartment">
+
+    <label for="intercom">Домофон:</label>
+    <input type="text" id="intercom" name="intercom">
+
+    <label for="floor">Этаж:</label>
+    <input type="text" id="floor" name="floor">
+
+    <label for="entrance">Подъезд:</label>
+    <input type="text" id="entrance" name="entrance">
+
+    <input type="submit" value="Изменить адрес">
+</form>
         <form method="POST" action="delete_account.php">
           <input type="submit" value="Удалить аккаунт"
             onclick="return confirm('Вы уверены, что хотите удалить свой аккаунт?');">
@@ -181,6 +201,20 @@ $orders_result = mysqli_query($induction, $orders_query);
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // JavaScript to toggle the visibility of the address form and the button
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("addressForm");
+      var button = document.getElementById("toggleFormButton");
+
+      button.addEventListener("click", function () {
+        form.style.display = form.style.display === "none" ? "block" : "none";
+      });
+
+      // Show the button initially
+      button.style.display = "block";
+    });
+  </script>
 
   <style>
     .btn {
