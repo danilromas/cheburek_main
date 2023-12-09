@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Slider</title>
+    <!-- Add Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<section class="about" id="about">
+    <h1 class="heading">О <span>Нас</span></h1>
+
+    <div id="videoCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <video class="d-block w-100" controls poster="images/cheb2.jpg">
+                    <source src="images/video.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- Add more carousel items for additional videos -->
+            <div class="carousel-item">
+                <video class="d-block w-100" controls poster="images/cheb2.jpg">
+                    <source src="images/second_video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#videoCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#videoCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="content">
+        <h3>БЕЗУПРЕЧНАЯ ЧЕБУРЕЧНАЯ</h3>
+        <p>Наше кафе находится в самом сердце нашего города. Недалеко от нас прекрасная набережная, парки, море.
+            Поэтому после прекрасной прогулки ждем вас к нам н�� завтрак-обед-ужин.</p>
+        <p>Очень вкусно, по домашнему, и быстро.</p>
+        <p>-Чебуреки от 155р</p>
+        <p>-Завтрак 249р</p>
+        <p>-Комплексный обед 380р</p>
+        <p>-Разнообразное меню</p>
+        <p>Так же действуют различные акции, скорее приходи мы тебя ждем!</p>
+        <a href="#menu" class="btn">Наше меню</a>
+    </div>
+</section>
+
+</body>
+</html>

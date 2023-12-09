@@ -381,6 +381,15 @@ section{
     flex: 1 1 30rem;
     max-width: 100%;
     }
+
+
+    
+    video {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
     
     .about .row .slider img {
     width: 100%;

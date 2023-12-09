@@ -24,6 +24,26 @@ session_start();
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miss+Lavanda&display=swap">
+    
+    
+
+    <style>
+        /* Add your styles here */
+        .slider-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .video-slide {
+            width: 400px;
+            height: 700px;
+            margin-right: 20px;
+        }
+    </style>
 </head>
 
 
@@ -92,6 +112,10 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 <img src="images/zagruzheno.png" alt="">
             </div>
             <a href="#menu" class="btn">Меню</a>
+            <br><br><br><br><br>
+            <video  controls="controls" poster="images/cheb2.jpg">
+                <source src="images/video1.mp4" type='video/ogg; codecs="theora, vorbis"'>
+            </div>
         </div>
     </section>
 
@@ -100,10 +124,30 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         <h1 class="heading">О <span>Нас</span></h1>
 
         <div class="row">
-            <div class="images">
-            <video width="400" height="700" controls="controls" poster="images/cheb2.jpg">
-                <source src="images/video.mp4" type='video/ogg; codecs="theora, vorbis"'>
+        <div id="videoCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <video class="d-block w-100" controls poster="images/cheb2.jpg">
+                    <source src="images/video.mp4" type="video/mp4">
+                </video>
             </div>
+            <!-- Add more carousel items for additional videos -->
+            <div class="carousel-item">
+                <video class="d-block w-100" controls poster="images/cheb2.jpg">
+                    <source src="images/second_video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#videoCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#videoCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        </div>
 
             <div class="content">
                 <h3>БЕЗУПРЕЧНАЯ ЧЕБУРЕЧНАЯ</h3>
