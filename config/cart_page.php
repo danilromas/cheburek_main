@@ -58,8 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
     } elseif ($city_dwell == 'nakhimovsky'){
         $total_price += 300;
     }
+    elseif ($city_dwell == 'drygoe'){
+        $total_price += 500;
+    }
     else{
-        
+
     }
 }
 if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
@@ -150,6 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
                 <option value="leninsky">Ленинский</option>
                 <option value="nakhimovsky">Нахимовский</option>
                 <option value="gagarinsky">Гагаринский</option>
+                <option value="drygoe">Гагаринский</option>
         </select>
         <input type="submit" name="submit_order" value="Оформить заказ">
     </form>
