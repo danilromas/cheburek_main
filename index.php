@@ -22,9 +22,17 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miss+Lavanda&display=swap">
-    
+    <!-- Bootstrap CSS -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.7.12/umd.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head> 
     
 
     <style>
@@ -112,10 +120,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 <img src="images/zagruzheno.png" alt="">
             </div>
             <a href="#menu" class="btn">Меню</a>
-            <br><br><br><br><br>
-            <video  controls="controls" poster="images/cheb2.jpg">
-                <source src="images/video1.mp4" type='video/ogg; codecs="theora, vorbis"'>
-            </div>
+            
         </div>
     </section>
 
@@ -134,7 +139,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <!-- Add more carousel items for additional videos -->
             <div class="carousel-item">
                 <video class="d-block w-100" controls poster="images/cheb2.jpg">
-                    <source src="images/second_video.mp4" type="video/mp4">
+                    <source src="images/video1.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -161,8 +166,9 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
                 <p>Так же действуют различные акции, скорее приходи мы тебя ждем!</p>
                 <a href="#menu" class="btn">Наше меню</a>
             </div>
-        </div>
+    </div>
     </section>
+
 
     <section class="menu" id="menu">
     <h1 class="heading"><span>Меню</span></h1>
@@ -480,11 +486,26 @@ if ($result1) {
 
 
     </script>
+
+<script>
+  $(document).ready(function(){
+    // Activate Carousel with a specified interval
+    $('#videoCarousel').carousel({
+      interval: 3000  // Change the speed of slides here
+    });
+
+    // Enable carousel control
+    $(".carousel-control-prev").click(function(){
+      $("#videoCarousel").carousel('prev');
+    });
+    $(".carousel-control-next").click(function(){
+      $("#videoCarousel").carousel('next');
+    });
+  });
+</script>
+
+
 </body>
 
-<style>
-
-
-</style>
 
 </html>
