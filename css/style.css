@@ -20,7 +20,6 @@
     outline: none;
     border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 }
 
@@ -712,7 +711,7 @@ text-transform: none;
  }
 
  .blogs .box-container .box .image{
-    height: 25rem;
+    height: 70rem;
     overflow: hidden;
     width: 100%;
  }
