@@ -56,7 +56,35 @@ session_start();
     display: block; /* Это заставляет видео заполнять ширину контейнера */
     max-height: 100%; /* Опционально можно ограничить максимальную высоту */
   }
+  /* Общие стили для карусели, чтобы она была центрирована */
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 767px) {
+    /* Устанавливаем высоту и ширину карусели и видео для мобильных */
+    .carousel, .carousel-inner, .carousel-item, .video-fluid {
+        height: auto; /* Высота будет зависеть от содержимого */
+        width: 100%; /* Видео будет на ширину экрана */
+        max-width: 100%; /* Ограничиваем максимальную ширину */
+    }
+
+    .carousel-item {
+        display: flex; /* Используем Flexbox для элементов карусели */
+        justify-content: center; /* Горизонтальное выравнивание по центру */
+        align-items: center; /* Вертикальное выравнивание по центру */
+    }
+
+    /* Медиа-запрос может изменить ваши стили CSS для видео */
+    .video-fluid {
+        max-height: none; /* Убираем ограничение по максимальной высоте */
+    }}
     </style>
+
+    
 </head>
  
  
@@ -218,6 +246,59 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
  
     </div>
 </section>
+
+
+<!-- blogs start -->
+<section class="blogs" id="blogs">
+    <h1 class="heading">НАШ <span>БЛОГ</span></h1>
+    <div class="box-container">
+    <?php
+$query1 = "SELECT * FROM tbl_ckeditor";
+$result1 = mysqli_query($induction, $query1);
+ 
+if ($result1) {
+    // Loop to display each record
+    while ($row = mysqli_fetch_assoc($result1)) {
+        echo '<div class="box">';
+        echo '<div class="image">';
+        echo '<img src="' . $row['image_url'] . '" alt="">';
+        echo '</div>';
+        echo '<div class="content">';
+        echo '<a href="#" class="title">' . $row['itemName'] . '</a>';
+        echo '<span>by admin/' . $row['created_at'] . '</span>';
+        echo '<p>' . $row['kratko'] . '</p>';
+        echo '<a href="../config/news.php?id=' . $row['id'] . '" class="btn read-more">Читать далее</a>';
+ 
+        if ($_SESSION["admink"]) {
+            // Form for deletion
+            echo '<form method="POST" action="../config/delete_blog.php">';
+            echo '<input type="hidden" name="blog_id" value="' . $row['id'] . '">';
+            echo '<button type="submit" name="delete_blog" class="btn delete-btn">Удалить</button>';
+            echo '</form>';
+        }
+ 
+        echo '</div>';
+        echo '</div>';
+    }
+ 
+        // Освобождение результата запроса
+        mysqli_free_result($result1);
+    } else {
+        // Если запрос не удался, выведите ошибку
+        echo 'Ошибка запроса: ' . mysqli_error($induction);
+    }
+ 
+    // Закрытие соединения с базой данных
+    mysqli_close($induction);
+    ?>
+            </div>
+        </div>
+    </div>
+    <?php if ($_SESSION["admink"]) { ?>
+                        <a href = 'config/redactor.php' class="btn">Создать новый блог</a>
+                    <?php } ?>
+ 
+</section>
  
 <script>
     // JavaScript code to handle filtering by category
@@ -363,57 +444,6 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
         </div>
  
     </section>
-    <!-- blogs start -->
-    <section class="blogs" id="blogs">
-    <h1 class="heading">НАШ <span>БЛОГ</span></h1>
-    <div class="box-container">
-    <?php
-$query1 = "SELECT * FROM tbl_ckeditor";
-$result1 = mysqli_query($induction, $query1);
- 
-if ($result1) {
-    // Loop to display each record
-    while ($row = mysqli_fetch_assoc($result1)) {
-        echo '<div class="box">';
-        echo '<div class="image">';
-        echo '<img src="' . $row['image_url'] . '" alt="">';
-        echo '</div>';
-        echo '<div class="content">';
-        echo '<a href="#" class="title">' . $row['itemName'] . '</a>';
-        echo '<span>by admin/' . $row['created_at'] . '</span>';
-        echo '<p>' . $row['kratko'] . '</p>';
-        echo '<a href="../config/news.php?id=' . $row['id'] . '" class="btn read-more">Читать далее</a>';
- 
-        if ($_SESSION["admink"]) {
-            // Form for deletion
-            echo '<form method="POST" action="../config/delete_blog.php">';
-            echo '<input type="hidden" name="blog_id" value="' . $row['id'] . '">';
-            echo '<button type="submit" name="delete_blog" class="btn delete-btn">Удалить</button>';
-            echo '</form>';
-        }
- 
-        echo '</div>';
-        echo '</div>';
-    }
- 
-        // Освобождение результата запроса
-        mysqli_free_result($result1);
-    } else {
-        // Если запрос не удался, выведите ошибку
-        echo 'Ошибка запроса: ' . mysqli_error($induction);
-    }
- 
-    // Закрытие соединения с базой данных
-    mysqli_close($induction);
-    ?>
-            </div>
-        </div>
-    </div>
-    <?php if ($_SESSION["admink"]) { ?>
-                        <a href = 'config/redactor.php' class="btn">Создать новый блог</a>
-                    <?php } ?>
- 
-</section>
  
      <!-- blogs end-->
     <!-- footer start-->
