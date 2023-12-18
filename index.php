@@ -39,8 +39,8 @@ session_start();
     <style>
         /* Убедитесь, что карусель и видео не выходят за пределы своих контейнеров */
 .carousel, .carousel-inner, .carousel-item, .video-fluid {
-    height: 100%;
-    width: 100%;
+    height: 100rem;
+    width: 1607px;
   }
  
   /* Предотвращаем внезапное изменение размера при переключении слайдов */
@@ -51,11 +51,13 @@ session_start();
     -o-transition: transform 0.5s ease-in-out;
   }
  
-  /* Устанавливаем видео так, чтобы оно было масштабируемым и заполнило контейнер */
   .video-fluid {
-    display: block; /* Это заставляет видео заполнять ширину контейнера */
-    max-height: 100%; /* Опционально можно ограничить максимальную высоту */
-  }
+    display: block;
+    max-width: 100%;
+    margin-top: 10px; /* создаем отступ сверху */
+    border-radius: 5px; /* добавляем закругление углов */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* добавляем тень */
+}
   /* Общие стили для карусели, чтобы она была центрирована */
 .carousel {
     display: flex;
@@ -198,57 +200,9 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             </div>
     </div>
     </section>
- 
- 
-    <section class="menu" id="menu">
-    <h1 class="heading"><span>Меню</span></h1>
- 
-    <div class="menu-sorting-btns box-container">
-        <button class="sorting-btn" data-category="all">Все</button>
- 
-        <?php while ($rowcategories = mysqli_fetch_assoc($resultcategories)): ?>
-            <button class="sorting-btn" data-category="<?= $rowcategories['category_id'] ?>">
-                <?= $rowcategories['category_name'] ?>
-            </button>
-        <?php endwhile; ?>
-    </div>
- 
-    <div class="box-container">
-        <?php
-        // Reset the pointer of the result set
-        mysqli_data_seek($result, 0);
- 
-        while ($row = mysqli_fetch_assoc($result)): ?>
-            <div class="box" data-item-id="<?= $row['item_id'] ?>" data-category="<?= $row['category_id'] ?>">
-                <img style="height: 22rem; border-radius: 10px;" src="<?= $row['image_url'] ?>" alt="">
-                <h3>
-                    <?= $row['item_name'] ?>
-                </h3>
-                <div class="price">
-                    <?= $row['price'] ?>₽
-                    <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
-                </div>
- 
-                <?php if ($_SESSION["admink"]) { ?>
-                    <a href="#" class="btn edit-btn" data-item-id="<?= $row['item_id'] ?>">Изменить</a>
-                    <a href="/config/delete.php?id=<?= $row['item_id'] ?>" class="btn">Удалить</a>
-                <?php } ?>
-            </div>
-        <?php endwhile; ?>
-        <?php if ($_SESSION["admink"]) { ?>
-            <div class="box">
-                <img src="images/menu-1.jpg" alt="">
-                <h3>Новый товар</h3>
-                <div class="price"></div>
-                <a href="/config/addempty.php" class="btn">Добавить</a>
-            </div>
-        <?php } ?>
- 
-    </div>
-</section>
 
 
-<!-- blogs start -->
+    <!-- blogs start -->
 <section class="blogs" id="blogs">
     <h1 class="heading">НАШ <span>БЛОГ</span></h1>
     <div class="box-container">
@@ -298,6 +252,54 @@ if ($result1) {
                         <a href = 'config/redactor.php' class="btn">Создать новый блог</a>
                     <?php } ?>
  
+</section>
+ 
+ 
+    <section class="menu" id="menu">
+    <h1 class="heading"><span>Меню</span></h1>
+ 
+    <div class="menu-sorting-btns box-container">
+        <button class="sorting-btn" data-category="all">Все</button>
+ 
+        <?php while ($rowcategories = mysqli_fetch_assoc($resultcategories)): ?>
+            <button class="sorting-btn" data-category="<?= $rowcategories['category_id'] ?>">
+                <?= $rowcategories['category_name'] ?>
+            </button>
+        <?php endwhile; ?>
+    </div>
+ 
+    <div class="box-container">
+        <?php
+        // Reset the pointer of the result set
+        mysqli_data_seek($result, 0);
+ 
+        while ($row = mysqli_fetch_assoc($result)): ?>
+            <div class="box" data-item-id="<?= $row['item_id'] ?>" data-category="<?= $row['category_id'] ?>">
+                <img style="height: 22rem; border-radius: 10px;" src="<?= $row['image_url'] ?>" alt="">
+                <h3>
+                    <?= $row['item_name'] ?>
+                </h3>
+                <div class="price">
+                    <?= $row['price'] ?>₽
+                    <a href="#" class="btn buy-btn" data-item-id="<?= $row['item_id'] ?>">Добавить в корзину</a>
+                </div>
+ 
+                <?php if ($_SESSION["admink"]) { ?>
+                    <a href="#" class="btn edit-btn" data-item-id="<?= $row['item_id'] ?>">Изменить</a>
+                    <a href="/config/delete.php?id=<?= $row['item_id'] ?>" class="btn">Удалить</a>
+                <?php } ?>
+            </div>
+        <?php endwhile; ?>
+        <?php if ($_SESSION["admink"]) { ?>
+            <div class="box">
+                <img src="images/menu-1.jpg" alt="">
+                <h3>Новый товар</h3>
+                <div class="price"></div>
+                <a href="/config/addempty.php" class="btn">Добавить</a>
+            </div>
+        <?php } ?>
+ 
+    </div>
 </section>
  
 <script>
