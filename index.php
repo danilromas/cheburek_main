@@ -162,29 +162,29 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     <section class="about" id="about">
   <h1 class="heading">О <span>Нас</span></h1>
   <div class="row">
-    <div id="videoCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <video class="video-fluid" controls poster="images/cheb2.jpg">
-            <source src="images/video.mp4" type="video/mp4">
-          </video>
-        </div>
-        <!-- Add more carousel items for additional videos -->
-        <div class="carousel-item">
-          <video class="video-fluid" controls poster="images/cheb2.jpg">
-            <source src="images/video1.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#videoCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#videoCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+  <div id="videoCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+ <div class="carousel-inner">
+    <div class="carousel-item active">
+      <video class="video-fluid" controls poster="images/cheb2.jpg">
+        <source src="images/video.mp4" type="video/mp4">
+      </video>
     </div>
+    <!-- Add more carousel items for additional videos -->
+    <div class="carousel-item">
+      <video class="video-fluid" controls poster="images/cheb2.jpg">
+        <source src="images/video1.mp4" type="video/mp4">
+      </video>
+    </div>
+ </div>
+ <a class="carousel-control-prev" href="#videoCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+ </a>
+ <a class="carousel-control-next" href="#videoCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+ </a>
+</div>
  
             <div class="content">
                 <h3>БЕЗУПРЕЧНАЯ ЧЕБУРЕЧНАЯ</h3>
