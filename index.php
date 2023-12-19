@@ -525,6 +525,7 @@ if ($result1) {
   $(document).ready(function(){
     // Activate Carousel with a specified interval
     $('#videoCarousel').carousel({
+        interval: false
     });
  
     // Enable carousel control
