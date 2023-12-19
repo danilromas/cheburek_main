@@ -525,7 +525,6 @@ if ($result1) {
   $(document).ready(function(){
     // Activate Carousel with a specified interval
     $('#videoCarousel').carousel({
-      interval: 3000  // Change the speed of slides here
     });
  
     // Enable carousel control
