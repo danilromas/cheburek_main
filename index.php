@@ -22,7 +22,6 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
  
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miss+Lavanda&display=swap">
@@ -33,62 +32,41 @@ session_start();
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.7.12/umd.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head> 
- 
- 
-    <style>
-        /* Убедитесь, что карусель и видео не выходят за пределы своих контейнеров */
-.carousel, .carousel-inner, .carousel-item, .video-fluid {
-    height: 100rem;
-    width: 1607px;
-  }
- 
-  /* Предотвращаем внезапное изменение размера при переключении слайдов */
-  .carousel-item {
-    transition: transform 0.5s ease-in-out;
-    -webkit-transition: transform 0.5s ease-in-out;
-    -moz-transition: transform 0.5s ease-in-out;
-    -o-transition: transform 0.5s ease-in-out;
-  }
- 
-  .video-fluid {
-    display: block;
-    max-width: 100%;
-    margin-top: 10px; /* создаем отступ сверху */
-    border-radius: 5px; /* добавляем закругление углов */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* добавляем тень */
-}
-  /* Общие стили для карусели, чтобы она была центрирована */
-.carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<style>
+    /* Подгоняем видео под размеры контейнера, сохраняем пропорции, не выходя за рамки */
+.video-fluid {
+    width: 600px;
+    height: auto; /* Можно установить фиксированную высоту если нужно */
+    object-fit: cover; /* Покрывает элемент видео, не нарушая пропорции */
 }
 
-/* Медиа-запрос для мобильных устройств */
-@media (max-width: 767px) {
-    /* Устанавливаем высоту и ширину карусели и видео для мобильных */
-    .carousel, .carousel-inner, .carousel-item, .video-fluid {
-        height: auto; /* Высота будет зависеть от содержимого */
-        width: 100%; /* Видео будет на ширину экрана */
-        max-width: 100%; /* Ограничиваем максимальную ширину */
+/* Обеспечиваем адаптивность контейнера видео */
+.video-container {
+    width: 100%; /* 100% ширины родительского элемента */
+    display: flex; /* Используем Flexbox для центрирования видео */
+    justify-content: center; /* Центрировать содержимое по горизонтали */
+    align-items: center; /* Центрировать содержимое по вертикали */
+    overflow: hidden; /* Скрыть части видео, выходящие за рамки контейнера */
+}
+
+/* Обеспечиваем, что заголовок и контент идут после видео */
+.heading, .row {
+    width: 100%;
+    display: block; /* или flex/grid в зависимости от структуры вашего дизайна */
+}
+
+/* Адаптируем layout под мобильные устройства */
+@media (max-width: 768px) {
+    .video-container {
+        height: auto; /* Меньшая высота для мобильных устройств */
     }
 
-    .carousel-item {
-        display: flex; /* Используем Flexbox для элементов карусели */
-        justify-content: center; /* Горизонтальное выравнивание по центру */
-        align-items: center; /* Вертикальное выравнивание по центру */
-    }
-
-    /* Медиа-запрос может изменить ваши стили CSS для видео */
     .video-fluid {
-        max-height: none; /* Убираем ограничение по максимальной высоте */
-    }}
+        object-fit: contain; /* Изменить на contain для просмотра всего видео */
+    }
+}
     </style>
-
-    
-</head>
- 
+</head> 
  
 <?php
 require_once 'config/databases.php';
@@ -160,33 +138,14 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
     </section>
  
     <section class="about" id="about">
-  <h1 class="heading">О <span>Нас</span></h1>
-  <div class="row">
-  <div id="videoCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
- <div class="carousel-inner">
-    <div class="carousel-item active">
-      <video class="video-fluid" controls poster="images/cheb2.jpg">
-        <source src="images/video.mp4" type="video/mp4">
-      </video>
+    <div class="row">
+    <div class="video-container">
+        <video class="video-fluid" controls>
+            <source src="images/video1.mp4" type="video/mp4">
+        </video>
     </div>
-    <!-- Add more carousel items for additional videos -->
-    <div class="carousel-item">
-      <video class="video-fluid" controls poster="images/cheb2.jpg">
-        <source src="images/video1.mp4" type="video/mp4">
-      </video>
-    </div>
- </div>
- <a class="carousel-control-prev" href="#videoCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
- </a>
- <a class="carousel-control-next" href="#videoCarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
- </a>
-</div>
- 
-            <div class="content">
+    <h1 class="heading">О <span>Нас</span></h1>
+        <div class="content">
                 <h3>БЕЗУПРЕЧНАЯ ЧЕБУРЕЧНАЯ</h3>
                 <p>Наше кафе находится в самом сердце нашего города. Недалеко от нас прекрасная набережная, парки, море.
                     Поэтому после прекрасной прогулки ждем вас к нам на завтрак-обед-ужин.</p>
@@ -525,7 +484,6 @@ if ($result1) {
   $(document).ready(function(){
     // Activate Carousel with a specified interval
     $('#videoCarousel').carousel({
-        interval: false
     });
  
     // Enable carousel control
