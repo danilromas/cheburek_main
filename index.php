@@ -91,7 +91,7 @@ $resultcategories = mysqli_query($induction, $sqlcategories);
             <a href="#home">Главная</a>
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
-            <a href="#review">отзывы</a>
+            <a href="#review">Отзывы</a>
             <a href="#contact">Находимся</a>
             <a href="#contact">Соц. сети</a>
             <a href="/config/account.php">Личный кабинет</a>
@@ -396,9 +396,9 @@ if ($result1) {
                 </div>
                 <div class="inputBox">
                     <span class="fas fa-phone"></span>
-                    <input type="number" name='number' placeholder="телефон">
+                    <input type="number" name='number' placeholder="Телефон">
                 </div>
-                <input type="submit" value="отправить" class="btn">
+                <input type="submit" value="Отправить" class="btn">
  
             </form>
  
@@ -415,17 +415,21 @@ if ($result1) {
                 class="fa-brands fa-instagram""></a>
             <a href=" https://ok.ru/group/70000002619640" class="fa-brands fa-odnoklassniki"></a>
             <a href="https://t.me/bezuprechnaya_cheburechnay" class="fa-brands fa-telegram"></a>
+            <a href="viber://chat?number=79782504735" class="fa-brands fa-viber"></a>
+            <a href="https://api.whatsapp.com/send?phone=79782504735" class="fa-brands fa-whatsapp"></a>
         </div>
         <div class="links">
             <a href="#home">Главная</a>
             <a href="#about">О нас</a>
             <a href="#menu">Меню</a>
-            <a href="#review">отзывы</a>
+            <a href="#review">Отзывы</a>
             <a href="#contact">Находимся</a>
             <a href="#contact">Соц. сети</a>
             <a href="/config/account.php">Администрирование</a>
         </div>
-        <div class="credit">Наши Контакты: <span>+7 (978) 250-47-35 <br> ИНН: 9200009575
+        <div class="credit">Наши Контакты: <span>+7 (978) 250-47-35
+        <br> 
+        ИНН: 9200009575
                 ОГРН: 1229200001623
                 Контакт: +79782504719
                 infiniti_ooo@inbox.ru</span> </div>

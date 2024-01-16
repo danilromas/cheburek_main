@@ -1,5 +1,10 @@
 <?php
 
+//$par1_ip = "localhost";
+//$par2_name = "a0873815_bezuprechnaya";
+//$par3_p = "bahuicacuv";
+//$par4_db = "a0873815_bezuprechnaya";
+
 $par1_ip = "localhost";
 $par2_name = "root";
 $par3_p = "";

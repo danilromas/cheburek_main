@@ -373,7 +373,7 @@ styleElement.textContent = styles;
                 // Создаем кнопку "Удалить" и добавляем атрибут data-product-id
                 const removeButton = document.createElement('button');
                 removeButton.className = 'remove-item-btn';
-                removeButton.textContent = 'Убрать';
+                removeButton.textContent = 'X';
 
                 // Устанавливаем data-product-id равным идентификатору товара
                 removeButton.setAttribute('data-product-id', item.item_id);

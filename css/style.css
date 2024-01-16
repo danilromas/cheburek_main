@@ -1002,8 +1002,8 @@ h2.item-price{
 button.remove-item-btn{
     margin-left: auto;
     margin-right: auto;
-    font-size: 20px;
     vertical-align: bottom;
+    width: 100%;
 
 }
 

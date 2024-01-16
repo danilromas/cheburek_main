@@ -173,6 +173,43 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['submit_order'])) {
         margin-right: auto;
         background-color: brown;
     }
+
+@media only screen and (max-width: 600px) {
+  /* Adjust the logo size */
+  .logo {
+    width: 50%;
+  }
+
+  /* Center align the table */
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Adjust the font size of the note */
+  .note {
+    font-size: 14px;
+  }
+
+  /* Adjust the font size of the empty cart message */
+  .empty-cart-message {
+    font-size: 16px;
+  }
+
+  /* Adjust the form inputs */
+  input[type="text"],
+  select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Center align the submit button */
+  input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 </style>
 
 </html>
